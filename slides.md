@@ -18,16 +18,20 @@ themeConfig:
 defaults:
   layout: default
 class: flex flex-col justify-center
+
 ---
 
-<div class="text-6xl font-black mb-4 text-sky-400">+4,141 -5,449</div>
+<div class="text-4xl font-mono font-semibold mb-6 tracking-tight">
+  <span class="text-green-400">+5,449</span>
+  <span class="text-red-400 ml-3">-4,141</span>
+</div>
 
 # Code Structure
 
-<p class="text-2xl text-slate-300">Challenges with AI</p>
+<p class="text-2xl text-slate-400">Challenges with AI</p>
 
 <div class="mt-12 text-slate-500 font-mono italic">
-Working with AI without losing the discipline of software engineering.
+Good Code in the AI age
 </div>
 
 ---
@@ -39,85 +43,66 @@ layout: section
 <p class="text-section-sub mt-4">Three stages of letting AI drive.</p>
 
 ---
+layout: stage
+emoji: 🛣️
+---
 
-# Stage 1 — The Honeymoon
-
-<div class="grid grid-cols-[auto_1fr] gap-12 items-center mt-4">
-
-<div class="text-[10rem] leading-none">🍯</div>
-
-<div>
+# Stage 1: The Open Road
 
 - You tell the AI what you want
 - It builds some huge PR with a lot of changes
 - The code is sloppy
-- But it fits your spec — and that's what matters!
-
-</div>
-
-</div>
+- But it fits the spec, it does what you asked, and that's what matters!
 
 ---
+layout: stage
+emoji: 🌫️
+---
 
-# Stage 2 — The Fog
-
-<div class="grid grid-cols-[auto_1fr] gap-12 items-center mt-4">
-
-<div class="text-[10rem] leading-none">🌫️</div>
-
-<div>
+# Stage 2: The Fog
 
 - The code grows
-- You don't understand the code — only the AI does
+- You don't understand it; only the AI does
 - Bugs appear, so you task the AI with fixing them and writing tests
 - The tests pass; you're not sure what they're really proving
 
-</div>
-
-</div>
-
+---
+layout: stage
+emoji: 🐊
 ---
 
-# Stage 3 — The Wall
-
-<div class="grid grid-cols-[auto_1fr] gap-12 items-center mt-4">
-
-<div class="text-[10rem] leading-none">🧱</div>
-
-<div>
+# Stage 3: The Swamp
 
 - The codebase is huge
 - You don't understand it, and the AI struggles to navigate it too
-- Tests are a mess — many stubbed out because they don't work
+- The tests are a mess; many are stubbed out because they don't work
 - Adding a feature is painful: tests fail, the AI comments them out or rewrites their assumptions
 - The bug list grows faster than it shrinks
 
-</div>
-
-</div>
-
 ---
-layout: two-cols-header
+layout: two-cols
 ---
 
 # What's Happening?
 
-::left::
-
-<p class="text-lead mb-4">
-AI is optimized for <strong class="text-sky-400">"make it work"</strong>, not <strong class="text-white">"make it good."</strong>
+<p class="text-lead">
+AI is optimized for <strong class="text-white"><em>make it work</em></strong>, not <strong><em>make it good.</em></strong>
 </p>
 
-- College taught us this rhythm: write code that works just well enough to solve the problem — that's success.
+- College taught us this rhythm: write code that works just well enough to solve the problem. That's success.
 - Then throw it away and move on.
-- AI works the same way. It doesn't know how to maintain code over years.
+- AI works the same way. It hasn't lived with code over the years.
 
 ::right::
 
-<div class="flex justify-center items-center h-full">
-  <div class="text-center p-8 bg-sky-500/10 rounded-full border-2 border-sky-500/20 w-64 h-64 flex flex-col justify-center">
-    <span class="text-sm uppercase tracking-widest text-sky-400">AI Goal</span>
-    <span class="text-3xl font-bold">"Make it Work"</span>
+<div class="flex flex-col justify-center items-center h-full gap-4">
+  <div class="text-center p-6 bg-slate-700/30 rounded-full border-2 border-slate-500/40 w-44 h-44 flex flex-col justify-center">
+    <span class="text-xs uppercase tracking-widest text-slate-400">AI Goal</span>
+    <span class="text-2xl font-bold text-slate-200 mt-1">"Make it Work"</span>
+  </div>
+  <div class="text-center p-6 bg-sky-500/10 rounded-full border-2 border-sky-500/40 w-44 h-44 flex flex-col justify-center">
+    <span class="text-xs uppercase tracking-widest text-sky-400">Your Goal</span>
+    <span class="text-2xl font-bold text-white mt-1">"Make it Good"</span>
   </div>
 </div>
 
@@ -133,15 +118,12 @@ layout: section
 
 # Do we know how to maintain code?
 
-<div class="mt-4 space-y-6">
+<Callout>Yes. (Mostly.)</Callout>
 
-<p class="text-3xl font-bold text-white">Yes. (Mostly.)</p>
-
-- That's what software engineering as a discipline <em>is</em>.
-- It's about building <strong class="text-sky-400">interfaces</strong> — the boundaries that let humans collaborate on code over years.
+- That's what software engineering as a discipline _is_.
+- It's about building **interfaces**: the boundaries that let humans collaborate on code over years.
 - Types, modules, packages, filesystems, processes, protocols. We didn't always have these.
 
-</div>
 
 ---
 
@@ -154,7 +136,7 @@ Imagine all we had was <strong class="text-white">assembly</strong> and <strong 
 </p>
 
 <p class="text-lead">
-Humans built <strong class="text-sky-400">programming languages</strong> with type systems, modules, and dependencies. We built <strong class="text-sky-400">filesystems</strong> with directories, extensions, ownership, and permissions.
+Humans built **programming languages** with type systems, modules, and dependencies. We built **filesystems** with directories, extensions, ownership, and permissions.
 </p>
 
 <div class="accent-box">
@@ -172,10 +154,10 @@ Humans built <strong class="text-sky-400">programming languages</strong> with ty
 
 <p class="text-lead mb-6">Good code is <strong class="text-white">maintainable</strong> and <strong class="text-white">extendable</strong>. It encapsulates behavior in modules and types.</p>
 
-- <strong class="text-sky-400">Make invalid states impossible</strong> where you can; comment clearly where you can't.
-- Each type and module is understandable from <strong class="text-sky-400">type structures, signatures, and docstrings</strong> alone.
-- <strong class="text-sky-400">Easy to use right, hard to do wrong.</strong>
-- You shouldn't need to read the whole codebase to add one feature — only the code relevant to your feature, plus the interfaces of its neighbors.
+- **Make invalid states impossible** where you can; comment clearly where you can't.
+- Each type and module should be understandable from **type structures, signatures, and docstrings** alone.
+- **Easy to use right, hard to do wrong.**
+- You shouldn't need to read the whole codebase to add one feature: just the code relevant to your feature, plus the interfaces of its neighbors.
 
 ---
 
@@ -185,11 +167,11 @@ Humans built <strong class="text-sky-400">programming languages</strong> with ty
 
 <p class="text-section-sub italic">"AI can read everything. Aren't abstractions less important now?"</p>
 
-<p class="text-3xl font-bold text-white">No — they matter more.</p>
+<Callout>No. I think they matter more.</Callout>
 
 - AI lets you get further with a sloppy codebase than humans alone could. For a while.
-- But AI also has a finite context window. And tokens cost money.
-- Better abstractions help <strong class="text-sky-400">both humans and AI</strong> do better work.
+- But AI also has a finite context window, and tokens cost money.
+- Better abstractions help **both humans and AI** do their best work.
 
 </div>
 
@@ -227,11 +209,11 @@ layout: section
 
 # Ask the AI About Code
 
-<p class="text-lead mb-6">AI is very good at <strong class="text-white">understanding and explaining</strong> code. Use it.</p>
+<p class="text-lead mb-6">AI is very good at <strong class="text-white">understanding and explaining</strong> code. I lean on this constantly.</p>
 
 - I used to ask <em>"what is this doing? Why do we need this?"</em> in code reviews.
-- Now I just ask the AI. It can usually tell me — and faster than the author can.
-- Use it while writing, while reviewing, while debugging.
+- Now I just ask the AI. Usually it's faster than asking the author.
+- I do this while writing, while reviewing, while debugging.
 
 <div class="accent-box mt-6">
   <p class="text-lg italic">This is the easy win. AI is a force multiplier for understanding code that already exists.</p>
@@ -241,27 +223,25 @@ layout: section
 
 # Review the Code
 
-<p class="text-lead mb-4">As you work, look at the abstractions you're building. AI doesn't <em>build</em> good structure by default — but it can <strong class="text-white">talk about it fluently</strong>.</p>
+<p class="text-lead mb-4">As you work, look at the abstractions you're building. AI doesn't <em>build</em> good structure by default. But it can <strong class="text-white">talk about it fluently</strong>.</p>
 
-<p class="text-lg text-slate-400 mb-3">Ask it to evaluate against named principles:</p>
+<p class="text-lg text-slate-400 mb-3">I ask it to evaluate against named principles:</p>
 
-- <strong class="text-sky-400">Make Invalid States Unrepresentable</strong> — encode rules in types.
-- <strong class="text-sky-400">Parse, Don't Validate</strong> — turn strings into structured values once, at the edge.
-- <strong class="text-sky-400">Functional Core, Imperative Shell</strong> — keep logic pure; isolate side effects.
-- <strong class="text-sky-400">Co-locate Decisions with Data</strong> — the code that decides should sit next to what it decides about.
-- <strong class="text-sky-400">Separation of Concerns</strong> — one module, one reason to change.
+- **Make Invalid States Unrepresentable**: encode rules in types.
+- **Parse, Don't Validate**: turn strings into structured values once, at the edge.
+- **Functional Core, Imperative Shell**: keep logic pure; isolate side effects.
+- **Co-locate Decisions with Data**: the code that decides should sit next to what it decides about.
+- **Separation of Concerns**: one module, one reason to change.
 
 <p class="text-sm text-slate-500 mt-4 italic">AI has read the whole internet. It knows what these mean. It just needs to be told to apply them.</p>
 
 ---
 
-# Beat 1 — "Make the text bigger"
+# I Asked for a Feature
 
-<p class="text-section-sub mb-6">I asked for a feature.</p>
+<p class="text-section-sub mb-6">"Make the text bigger."</p>
 
-<div class="prompt-quote mb-6">
-"Perhaps we should make the text sizes larger, and some more space between header and content"
-</div>
+<Prompt class="mb-6">Perhaps we should make the text sizes larger, and some more space between header and content</Prompt>
 
 <p class="text-lg text-slate-400 mb-2">What Claude delivered:</p>
 
@@ -272,56 +252,41 @@ layout: section
 .slidev-layout li { font-size: 1.4rem }
 ```
 
-<div class="accent-box mt-6">
-  <strong class="text-white">Stage 1 — The Honeymoon, in real time.</strong>
-  <p class="text-aside mt-1">It works. Until it doesn't.</p>
-</div>
+<Takeaway title="Stage 1, in this deck.">Looked great. Wasn't right underneath.</Takeaway>
 
 ---
 
-# Beat 2 — "What is `text-xl` doing?"
+# I Asked About the Code
 
-<p class="text-section-sub mb-6">I asked about the code.</p>
+<p class="text-section-sub mb-6">"What is `text-xl` doing?"</p>
 
-<div class="prompt-quote mb-3">
-"this line; what are all those class things doing? The text seems to be the same size as the list items"
-</div>
+<Prompt class="mb-3">this line; what are all those class things doing? The text seems to be the same size as the list items</Prompt>
 
-<div class="prompt-quote mb-6">
-"What is a rem?"
-</div>
+<Prompt class="mb-6">What is a rem?</Prompt>
 
 <p class="text-lg text-slate-400 mb-2">What Claude explained:</p>
 
 - `text-xl` → `1.25rem`. `text-slate-300` → a color. `mb-4` → a margin.
-- `.slidev-layout p { … }` has <strong class="text-sky-400">higher specificity</strong> than `.text-xl` — so the global rule silently wins.
+- `.slidev-layout p { … }` has **higher specificity** than `.text-xl`, so the global rule silently wins.
 - `1rem` = the root element's font-size. UnoCSS scales the whole utility set off that single root.
 
-<div class="accent-box mt-6">
-  <strong class="text-white">"Ask the AI About Code," in the wild.</strong>
-  <p class="text-aside mt-1">The easy win — AI as code explainer.</p>
-</div>
+<Takeaway title='"Ask the AI About Code," in this deck.'>The easy win.</Takeaway>
 
 ---
 
-# Beat 3 — "What's the idiomatic way?"
+# I Asked About the Design
 
-<p class="text-section-sub mb-6">I asked about the design.</p>
+<p class="text-section-sub mb-6">"What's the idiomatic way?"</p>
 
-<div class="prompt-quote mb-6">
-"What's the idiomatic way of managing this?"
-</div>
+<Prompt class="mb-6">What's the idiomatic way of managing this?</Prompt>
 
 <p class="text-lg text-slate-400 mb-2">What Claude proposed:</p>
 
 - **Tune the canvas, not individual sizes.** `canvasWidth` rescales the whole slide proportionally.
 - **Use utilities inline for emphasis.** Don't override base element rules.
-- **Define UnoCSS shortcuts.** Promote repeated combos to <strong class="text-sky-400">named concepts</strong> — `text-lead`, `text-section-sub`, `prompt-quote`.
+- **Define UnoCSS shortcuts.** Promote repeated combos to **named concepts**: `text-lead`, `text-section-sub`, `prompt-quote`.
 
-<div class="accent-box mt-6">
-  <strong class="text-white">"Review the Code," in the wild.</strong>
-  <p class="text-aside mt-1">Architecture, not patches.</p>
-</div>
+<Takeaway title='"Review the Code," in this deck.'>Better questions, better refactors.</Takeaway>
 
 ---
 layout: two-cols-header
@@ -373,29 +338,17 @@ shortcuts: {
 
 <div class="space-y-10 mt-8">
 
-<div class="flex items-center gap-8">
-  <div class="w-12 h-12 rounded-full bg-sky-500 flex items-center justify-center font-bold text-white shrink-0">1</div>
-  <div>
-    <h3 class="text-2xl font-bold text-white">Identify Tensions</h3>
-    <p class="text-lg text-slate-400">Ask AI: "Where does this code violate Parse-Don't-Validate?"</p>
-  </div>
-</div>
+<StepRow :number="1" title="Identify Tensions">
+Ask AI: "Where does this code violate Parse-Don't-Validate?"
+</StepRow>
 
-<div class="flex items-center gap-8">
-  <div class="w-12 h-12 rounded-full bg-sky-500 flex items-center justify-center font-bold text-white shrink-0">2</div>
-  <div>
-    <h3 class="text-2xl font-bold text-white">Explore Options</h3>
-    <p class="text-lg text-slate-400">Ask for two different ways to refactor the module boundary.</p>
-  </div>
-</div>
+<StepRow :number="2" title="Explore Options">
+Ask for two different ways to refactor the module boundary.
+</StepRow>
 
-<div class="flex items-center gap-8">
-  <div class="w-12 h-12 rounded-full bg-sky-500 flex items-center justify-center font-bold text-white shrink-0">3</div>
-  <div>
-    <h3 class="text-2xl font-bold text-white">Execute Refactor</h3>
-    <p class="text-lg text-slate-400">You pick the path. AI handles the tedious bulk changes.</p>
-  </div>
-</div>
+<StepRow :number="3" title="Execute Refactor">
+I pick the path. AI handles the tedious bulk changes.
+</StepRow>
 
 </div>
 
@@ -403,14 +356,14 @@ shortcuts: {
 
 # I Have a Claude Skill for This
 
-<p class="text-lead mb-6">A <strong class="text-sky-400">Structural Code Analysis</strong> skill that bundles these prompts.</p>
+<p class="text-lead mb-6">A **Structural Code Analysis** skill that bundles these prompts.</p>
 
 - It walks the AI through the principles and asks it to evaluate the current branch.
-- It surfaces the tensions, suggests options, and lets you pick the refactor.
-- <strong class="text-white">It can help. It can't do everything.</strong>
+- It surfaces the tensions, suggests options, and lets me pick the refactor.
+- <strong class="text-white">It helps. It doesn't decide.</strong>
 
 <div class="accent-box mt-6">
-  <p class="text-lg italic">The skill is a checklist. The judgment is still yours.</p>
+  <p class="text-lg italic">A checklist, not a substitute for thinking.</p>
 </div>
 
 ---
@@ -427,7 +380,7 @@ layout: section
 
 - <strong class="text-white text-xl">Self-Documenting:</strong> the interface tells the story, not the comments.
 - <strong class="text-white text-xl">Durable Structure:</strong> can I change a business rule without touching ten files?
-- <strong class="text-white text-xl">Human Context:</strong> "I chose this because…" — not "the AI did it."
+- <strong class="text-white text-xl">Human Context:</strong> "I chose this because…", not "the AI did it."
 - <strong class="text-white text-xl">Auditable PR:</strong> small enough that a human can actually review it.
 
 </div>
