@@ -31,10 +31,12 @@ Velocity today is a loan. Architecture is the interest rate.
 </div>
 
 ---
-layout: two-cols
+layout: two-cols-header
 ---
 
 # The FOMO Paradox
+
+::left::
 
 <p class="text-xl mb-8 text-slate-300">"If I don't use AI for everything, I'm falling behind."</p>
 
@@ -76,10 +78,12 @@ layout: two-cols
 </div>
 
 ---
-layout: two-cols
+layout: two-cols-header
 ---
 
 # Why AI Gets This Wrong
+
+::left::
 
 - <strong class="text-sky-400">RL Bias:</strong> Rewarded for immediate "correctness," not long-term elegance.
 - <strong class="text-sky-400">The Median Trap:</strong> Trained on the average quality of the web (mostly disposable code).
