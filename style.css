@@ -1,19 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Fira+Code:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Fira+Code:wght@400;500&family=Caveat:wght@500;600&display=swap');
 
-:root {
-  --slidev-slide-bg: #0f172a;
-  --slidev-slide-text: #f8fafc;
-}
+/*
+ * Hex colors below correspond to Tailwind tokens used in UnoCSS:
+ *   #0f172a slate-900 · #1e293b slate-800 · #334155 slate-700
+ *   #cbd5e1 slate-300 · #e2e8f0 slate-200 · #f1f5f9 slate-100
+ *   #38bdf8 sky-400   · #fb923c orange-400
+ */
 
 html.dark,
 html {
   --slidev-code-background: #1e293b;
-  --slidev-code-foreground: #f8fafc;
+  --slidev-code-foreground: #cbd5e1;
 }
 
 .slidev-layout {
   background-color: #0f172a;
-  color: #f8fafc;
+  color: #cbd5e1;
 }
 
 .slidev-layout :where(h1) {
@@ -30,17 +32,14 @@ html {
   color: #38bdf8;
 }
 
-.slidev-layout :where(p) {
-  color: #94a3b8;
-}
-
 /*
  * Override slidev default theme: it sets `.slidev-layout p { line-height: 1.5rem }`
- * — an absolute value that collapses lines at large font sizes. Match its
- * specificity (0-1-1) so source order makes us win, and use a unitless multiplier.
+ * (absolute, collapses lines at large font sizes) and a paragraph color we don't
+ * want. Match its specificity (0-1-1) so source order makes us win.
  */
 .slidev-layout p {
   line-height: 1.6;
+  color: #cbd5e1;
 }
 
 .slidev-layout :where(strong) {
@@ -53,7 +52,6 @@ html {
 }
 
 .slidev-layout :where(ul ul > li) {
-  color: #cbd5e1;
   font-size: 0.85em;
   padding: 0.15rem 0;
   list-style-type: '· ';
@@ -67,6 +65,41 @@ html {
   background: #1e293b;
   border: 1px solid #334155;
   border-radius: 0.5rem;
+}
+
+/* Default grid gap; utility classes still override on a case-by-case basis. */
+.slidev-layout :where(.grid) {
+  gap: 1.5rem;
+}
+
+/* Speaker label sits above its content; this is the only place that spacing matters. */
+.slidev-layout :where(.speaker-label) + * {
+  margin-top: 0.5rem;
+}
+
+/*
+ * Lists inside speech bubbles (Prompt / Claude) are supporting content, not
+ * primary slide bullets — tighten the spacing relative to the slide-level default.
+ */
+.slidev-layout :where(.prompt-quote, .claude-quote) :where(li) {
+  padding: 0.2rem 0;
+}
+
+/*
+ * Claude responses are dense, log-style. Override the deck-wide line-height
+ * (`.slidev-layout p`) and slidev's default p/li margins, both inherited.
+ * Specificity 0-2-0 beats the global rules.
+ */
+.slidev-layout .claude-quote :where(p, li) {
+  line-height: 1.4;
+}
+
+.slidev-layout .claude-quote p {
+  margin: 0.3rem 0;
+}
+
+.slidev-layout .claude-quote :where(p, li):first-child {
+  margin-top: 0;
 }
 
 .accent-box {

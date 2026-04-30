@@ -1,5 +1,5 @@
 <template>
-  <div class="prompt-quote">
+  <div class="claude-quote">
     <slot />
   </div>
 </template>

@@ -241,7 +241,7 @@ deserves different answers in different teams, codebases, and stages.
   - Humans invented programming languages and filesystems.
   - Your codebase needs the same kind of thinking.
 - **Live with the consequences.**
-  - The 8-argument function. The leaky abstraction. The workaround.
+  - AI will happily generate 8-argument functions, leaky abstractions, workarounds.
   - AI won't have to debug these in three months. You will.
 
 ---
@@ -297,11 +297,17 @@ by default. Knowledge ≠ habit. Asking the right question is the human's job.
 
 # I Asked for a Feature
 
-<p class="text-section-sub mb-6">"Make the text bigger."</p>
+<div class="grid grid-cols-2">
 
-<Prompt class="mb-6">Perhaps we should make the text sizes larger, and some more space between header and content</Prompt>
+<div>
+<div class="speaker-label eng-accent">Me</div>
 
-<p class="text-lg text-slate-400 mb-2">What Claude delivered:</p>
+<Prompt>Perhaps we should make the text sizes larger, and some more space between header and content</Prompt>
+
+</div>
+
+<div>
+<div class="speaker-label ai-accent">Claude</div>
 
 ```css
 /* style.css */
@@ -310,41 +316,150 @@ by default. Knowledge ≠ habit. Asking the right question is the human's job.
 .slidev-layout li { font-size: 1.4rem }
 ```
 
-<Takeaway title="Stage 1, in this deck.">Looked great. Wasn't right underneath.</Takeaway>
+</div>
+
+</div>
+
+<div class="grid grid-cols-2">
+
+<div class="flex flex-col items-center">
+  <div class="speaker-label !text-slate-500">What I checked</div>
+  <div class="border border-slate-700 rounded bg-slate-900 p-2 overflow-hidden" style="aspect-ratio: 16/9; width: 240px;">
+    <div class="font-extrabold text-slate-100" style="font-size: 1rem; line-height: 1;">Slide Title</div>
+    <div class="text-slate-300" style="font-size: 0.95rem; line-height: 1.3;">→ Bullet one</div>
+    <div class="text-slate-300" style="font-size: 0.95rem; line-height: 1.3;">→ Bullet two</div>
+    <div class="text-slate-300" style="font-size: 0.95rem; line-height: 1.3;">→ Bullet three</div>
+  </div>
+</div>
+
+<div class="flex flex-col items-center">
+  <div class="speaker-label !text-slate-500">Elsewhere</div>
+  <div class="border border-slate-700 rounded bg-slate-900 p-2 overflow-hidden" style="aspect-ratio: 16/9; width: 240px;">
+    <div class="font-extrabold text-slate-100" style="font-size: 1rem; line-height: 1;">Slide Title</div>
+    <div class="text-slate-500" style="font-size: 0.55rem; line-height: 1;">A subheader smaller than the bullets</div>
+    <div class="text-slate-300" style="font-size: 0.95rem; line-height: 1.3;">→ Body text bigger</div>
+    <div class="text-slate-300" style="font-size: 0.95rem; line-height: 1.3;">→ Than its own subheader</div>
+  </div>
+</div>
+
+</div>
 
 ---
 
 # I Asked About the Code
 
-<p class="text-section-sub mb-6">"What is `text-xl` doing?"</p>
+<div class="grid grid-cols-2">
 
-<Prompt class="mb-3">this line; what are all those class things doing? The text seems to be the same size as the list items</Prompt>
+<div>
+<div class="speaker-label eng-accent">Me</div>
 
-<Prompt class="mb-6">What is a rem?</Prompt>
+<Prompt>
 
-<p class="text-lg text-slate-400 mb-2">What Claude explained:</p>
+<code>class="text-xl text-slate-300 mb-4"</code>
 
-- `text-xl` → `1.25rem`. `text-slate-300` → a color. `mb-4` → a margin.
-- `.slidev-layout p { … }` has **higher specificity** than `.text-xl`, so the global rule silently wins.
-- `1rem` = the root element's font-size. UnoCSS scales the whole utility set off that single root.
+What are all those class things doing? The text seems to be the same size as the list items.
 
-<Takeaway title='"Ask the AI About Code," in this deck.'>The easy win.</Takeaway>
+</Prompt>
+
+</div>
+
+<div>
+<div class="speaker-label ai-accent">Claude</div>
+
+<Claude>
+
+Those are UnoCSS utility classes:
+
+- `text-xl` → `1.25rem`
+- `text-slate-300` → light gray
+- `mb-4` → `margin-bottom: 1rem`
+
+`.slidev-layout p` has specificity `(0,1,1)`. `.text-xl` is `(0,1,0)`. The global rule wins; `text-xl` silently loses.
+
+This is a self-inflicted wound from how I wrote the CSS.
+
+</Claude>
+
+</div>
+
+</div>
+
+<div class="grid grid-cols-2">
+
+<div>
+
+<Prompt>
+
+What is a rem?
+
+</Prompt>
+
+</div>
+
+<div>
+
+<Claude>
+
+`rem` = "root em". Relative to the root element's font-size. By default `1rem = 16px`. UnoCSS's whole text scale is multiples of that root.
+
+</Claude>
+
+</div>
+
+</div>
 
 ---
 
 # I Asked About the Design
 
-<p class="text-section-sub mb-6">"What's the idiomatic way?"</p>
+<div class="grid grid-cols-2">
 
-<Prompt class="mb-6">What's the idiomatic way of managing this?</Prompt>
+<div>
+<div class="speaker-label eng-accent">Me</div>
 
-<p class="text-lg text-slate-400 mb-2">What Claude proposed:</p>
+<Prompt>
 
-- **Tune the canvas, not individual sizes.** `canvasWidth` rescales the whole slide proportionally.
-- **Use utilities inline for emphasis.** Don't override base element rules.
-- **Define UnoCSS shortcuts.** Promote repeated combos to **named concepts**: `text-lead`, `text-section-sub`, `prompt-quote`.
+What's the idiomatic way of managing this?
 
-<Takeaway title='"Review the Code," in this deck.'>Better questions, better refactors.</Takeaway>
+</Prompt>
+
+</div>
+
+<div>
+<div class="speaker-label ai-accent">Claude</div>
+
+<Claude>
+
+The idiomatic slidev pattern has three layers:
+
+1. **Tune the canvas, not individual sizes.** `canvasWidth` rescales everything proportionally. The lever I should have reached for first.
+2. **Use utilities inline for emphasis.** Don't override base element rules.
+3. **Define UnoCSS shortcuts** for repeated patterns: `text-lead`, `text-section-sub`.
+
+</Claude>
+
+</div>
+
+</div>
+
+<div class="flex justify-center items-center">
+
+```diff
+- canvasWidth: 1280
++ canvasWidth: 980
+```
+
+<svg viewBox="0 0 80 40" class="w-20 h-12 flex-none mx-3" stroke="#fb923c" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M 75 20 Q 45 30, 8 18" />
+  <path d="M 8 18 L 17 13" />
+  <path d="M 8 18 L 16 24" />
+</svg>
+
+<div class="font-handwritten text-orange-300" style="font-size: 1.4rem; line-height: 1.1; max-width: 220px;">
+Smaller canvas, everything else is bigger!
+</div>
+
+</div>
 
 ---
 layout: two-cols-header
@@ -394,8 +509,6 @@ shortcuts: {
 
 # The 3-Step Review Cycle
 
-<div class="space-y-10 mt-8">
-
 <StepRow :number="1" title="Identify Tensions">
 Ask AI: "Where does this code violate Parse-Don't-Validate?"
 </StepRow>
@@ -408,7 +521,6 @@ Ask for two different ways to refactor the module boundary.
 I pick the path. AI handles the tedious bulk changes.
 </StepRow>
 
-</div>
 
 ---
 
