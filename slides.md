@@ -1,9 +1,8 @@
 ---
 theme: default
-title: Code Structure — Challenges with AI
+title: Engineering for Durability
 info: |
-  Code Structure: Challenges with AI.
-  Working with AI without losing the discipline of software engineering.
+  Engineering for Durability: Why Structure Still Matters with AI.
 author: Wendell Smith
 colorSchema: dark
 aspectRatio: 16/9
@@ -26,57 +25,51 @@ class: flex flex-col justify-center
   <span class="text-red-400 ml-3">-4,141</span>
 </div>
 
-# Code Structure
+# Engineering for Durability
 
-<p class="text-2xl text-slate-400">Challenges with AI</p>
-
-<div class="mt-12 text-slate-500 font-mono italic">
-Good Code in the AI age
-</div>
+<p class="text-2xl text-slate-400">Why Structure Still Matters with AI</p>
 
 ---
 layout: section
 ---
 
-# The Story
-
-<p class="text-section-sub mt-4">Three stages of letting AI drive.</p>
+# How It Goes
 
 ---
 layout: stage
-emoji: 🛣️
+emoji: 🏎️
 ---
 
-# Stage 1: The Open Road
+# Stage 1: The Rush
 
-- You tell the AI what you want
-- It builds some huge PR with a lot of changes
+- I tell the AI what I want
+- It builds a huge PR. Hundreds of changes.
 - The code is sloppy
-- But it fits the spec, it does what you asked, and that's what matters!
+- But it fits the spec. And that's what matters.
 
 ---
 layout: stage
-emoji: 🌫️
+emoji: 🌊
 ---
 
-# Stage 2: The Fog
+# Stage 2: The Code Pulls Away
 
-- The code grows
-- You don't understand it; only the AI does
-- Bugs appear, so you task the AI with fixing them and writing tests
-- The tests pass; you're not sure what they're really proving
+- The codebase grows. Doubles. Triples.
+- I don't understand it anymore. Only the AI does.
+- Bugs appear. I have the AI fix them and write tests.
+- The tests pass. I'm not sure what they're really proving.
 
 ---
 layout: stage
-emoji: 🐊
+emoji: 🕸️
 ---
 
-# Stage 3: The Swamp
+# Stage 3: Getting Stuck
 
-- The codebase is huge
-- You don't understand it, and the AI struggles to navigate it too
+- The codebase is bigger than any context window
+- I don't understand it. The AI struggles to navigate it too.
 - The tests are a mess; many are stubbed out because they don't work
-- Adding a feature is painful: tests fail, the AI comments them out or rewrites their assumptions
+- Adding a feature is painful: tests fail, and the AI comments them out or rewrites their assumptions
 - The bug list grows faster than it shrinks
 
 ---
@@ -86,25 +79,35 @@ layout: two-cols
 # What's Happening?
 
 <p class="text-lead">
-AI is optimized for <strong class="text-white"><em>make it work</em></strong>, not <strong><em>make it good.</em></strong>
+AI is great at writing code. It's not great at <em>living with</em> it.
 </p>
 
-- College taught us this rhythm: write code that works just well enough to solve the problem. That's success.
-- Then throw it away and move on.
-- AI works the same way. It hasn't lived with code over the years.
+- We learned to write code this way in school: solve the problem just well enough. Move on.
+- AI is trained the same way. Make it work. Move on.
+- It doesn't have to maintain the codebase three years later.
 
 ::right::
 
 <div class="flex flex-col justify-center items-center h-full gap-4">
-  <div class="text-center p-6 bg-slate-700/30 rounded-full border-2 border-slate-500/40 w-44 h-44 flex flex-col justify-center">
-    <span class="text-xs uppercase tracking-widest text-slate-400">AI Goal</span>
-    <span class="text-2xl font-bold text-slate-200 mt-1">"Make it Work"</span>
+  <div class="text-center p-6 ai-bg rounded-full border-2 ai-border w-44 h-44 flex flex-col justify-center">
+    <span class="text-xs uppercase tracking-widest ai-accent">AI Goal</span>
+    <span class="text-2xl font-bold text-white mt-1">"Make it Work"</span>
   </div>
-  <div class="text-center p-6 bg-sky-500/10 rounded-full border-2 border-sky-500/40 w-44 h-44 flex flex-col justify-center">
-    <span class="text-xs uppercase tracking-widest text-sky-400">Your Goal</span>
+  <div class="text-center p-6 eng-bg rounded-full border-2 eng-border w-44 h-44 flex flex-col justify-center">
+    <span class="text-xs uppercase tracking-widest eng-accent">Your Goal</span>
     <span class="text-2xl font-bold text-white mt-1">"Make it Good"</span>
   </div>
 </div>
+
+<!--
+"In school" is intentionally broad. Talk about it: college CS assignments,
+LeetCode-style interview prep, weekend projects. I came from physics — data
+analysis scripts, write-once-get-the-result, throw it away. That's where most
+of AI's training data comes from. The internet is mostly disposable code.
+
+The punchline lives at the end of the third bullet. It doesn't have to
+maintain the codebase three years later — but **you do**. Land that beat.
+-->
 
 ---
 layout: section
@@ -118,10 +121,10 @@ layout: section
 
 # Do we know how to maintain code?
 
-<Callout>Yes. (Mostly.)</Callout>
+<Callout><strong>Yes.</strong> (Mostly.)</Callout>
 
-- That's what software engineering as a discipline _is_.
-- It's about building **interfaces**: the boundaries that let humans collaborate on code over years.
+- That's what software engineering _is_ as a discipline: building **interfaces**.
+- The boundaries that let humans collaborate on code over years.
 - Types, modules, packages, filesystems, processes, protocols. We didn't always have these.
 
 
@@ -129,43 +132,44 @@ layout: section
 
 # A Thought Experiment
 
-<div class="mt-4 space-y-6">
-
 <p class="text-lead">
-Imagine all we had was <strong class="text-white">assembly</strong> and <strong class="text-white">raw disks</strong>: read and write any address; move bytes between them.
+Imagine all we had was <strong class="text-white">assembly</strong> and <strong class="text-white">raw disks</strong>. Read bytes from memory. Write bytes to disk. That's it.
 </p>
 
 <p class="text-lead">
-Humans built **programming languages** with type systems, modules, and dependencies. We built **filesystems** with directories, extensions, ownership, and permissions.
+Over decades, we built <strong>programming languages</strong> with type systems and modules. And <strong>filesystems</strong> with directories, ownership, and permissions.
 </p>
 
-<div class="accent-box">
-  <p class="text-2xl font-semibold text-white italic">
+<v-click>
+
+<div class="accent-box mt-4">
+  <p class="text-2xl italic">
     Would AI, starting from assembly and disks, have invented programming languages and filesystems?
   </p>
-  <p class="text-lead mt-3">I don't think so.</p>
 </div>
 
-</div>
+</v-click>
+
+<v-click>
+
+<Callout class="text-center"><span class="!ai-accent">I don't think so.</span></Callout>
+
+</v-click>
 
 ---
 
+
 # What Is Good Code?
 
-<p class="text-lead mb-6">Good code is <strong class="text-white">maintainable</strong> and <strong class="text-white">extendable</strong>. It encapsulates behavior in modules and types.</p>
+<p class="text-lead">Good code is <strong>maintainable</strong> and <strong>extendable</strong>.</p>
 
-- **Make invalid states impossible** where you can; comment clearly where you can't.
-- Each type and module should be understandable from **type structures, signatures, and docstrings** alone.
-- **Easy to use right, hard to do wrong.**
-- You shouldn't need to read the whole codebase to add one feature: just the code relevant to your feature, plus the interfaces of its neighbors.
+<Callout>Good code lets you change one thing without reading everything.</Callout>
 
 ---
 
 # Do we need this with AI?
 
-<div class="mt-4 space-y-6">
-
-<p class="text-section-sub italic">"AI can read everything. Aren't abstractions less important now?"</p>
+<Prompt>"AI can read everything. Aren't abstractions less important now?"</Prompt>
 
 <Callout>No. I think they matter more.</Callout>
 
@@ -173,49 +177,96 @@ Humans built **programming languages** with type systems, modules, and dependenc
 - But AI also has a finite context window, and tokens cost money.
 - Better abstractions help **both humans and AI** do their best work.
 
-</div>
-
 ---
 
 # The Scope of the Argument
 
 <div class="grid grid-cols-2 gap-8 mt-4">
 
-<div class="p-8 border border-slate-700 rounded-lg">
-  <h3 class="text-2xl font-bold text-slate-400 mb-4">Disposable Code</h3>
-  <p class="text-lg text-slate-500 mb-4">Prototypes, internal scripts, vibe-coding, 1-week shelf life.</p>
-  <div class="text-sky-400 font-bold">Let AI run wild.</div>
+<div class="p-8 border-2 ai-border ai-bg rounded-lg">
+  <h3 class="text-2xl font-bold ai-accent mb-4">Disposable Code</h3>
+  <p class="text-lg text-slate-300 mb-4">Prototypes, internal scripts, vibe-coding, days to weeks of shelf life.</p>
+  <div class="ai-accent font-bold">Let AI run wild.</div>
 </div>
 
-<div class="p-8 border border-sky-500/50 rounded-lg bg-sky-500/5">
-  <h3 class="text-2xl font-bold text-sky-400 mb-4">Durable Code</h3>
-  <p class="text-lg mb-4">Product logic, libraries, collaborative repos, 1-year+ shelf life.</p>
-  <div class="text-white font-bold">Engineering is required.</div>
+<div class="p-8 border-2 eng-border eng-bg rounded-lg">
+  <h3 class="text-2xl font-bold eng-accent mb-4">Durable Code</h3>
+  <p class="text-lg text-slate-300 mb-4">Product logic, libraries, collaborative repos, open-source, years of shelf life.</p>
+  <div class="eng-accent font-bold">Engineering is required.</div>
 </div>
 
 </div>
 
-<p class="mt-6 text-slate-400">The rest of this talk is about <strong class="text-white">durable code</strong>.</p>
+<p class="mt-6 text-slate-400">The rest of this talk is about <strong>durable code</strong>.</p>
 
 ---
 layout: section
 ---
 
-# The Toolbox
+# What To Do
 
-<p class="text-section-sub mt-4">How to keep your hands on the wheel.</p>
+---
+
+# What You Bring
+
+<p class="text-lead">Business context and experience.</p>
+
+- What does the business need?
+- Is this a prototype, or production?
+- Reliability, or velocity?
+- What's the cost of a breaking change?
+- How many pages did we get last month? For what?
+
+<Callout>No LLM has access to that.</Callout>
+
+<!--
+This is the third reason humans are still in the loop, and it's the deepest one.
+The first two (AI doesn't apply structure by default; AI's context window is
+finite) are about AI's limits as a coder. This one is about AI's limits as a
+judgment-maker. Even if AI perfectly applied every principle, it still wouldn't
+know whether this code matters.
+
+Lean into it: only you know whether to be careful or fast. The same prompt
+deserves different answers in different teams, codebases, and stages.
+-->
+
+---
+
+# Your Role
+
+- **Ensure it's Good Code.**
+  - PR reviews exist for a reason.
+  - OSS projects are rejecting AI-driven PRs.
+- **Choose the right abstractions.**
+  - Humans invented programming languages and filesystems.
+  - Your codebase needs the same kind of thinking.
+- **Live with the consequences.**
+  - The 8-argument function. The leaky abstraction. The workaround.
+  - AI won't have to debug these in three months. You will.
+
+---
+
+# When You're Fighting the AI
+
+<p class="text-lead">Friction means <strong class="text-white">you know something the AI doesn't.</strong></p>
+
+- AI avoids breaking changes. It's a greenfield project.
+- AI expands scope. You want a reviewable PR.
+- AI writes cavalier code. This is sensitive prod.
+
+<Callout>Explicit is better than implicit.</Callout>
 
 ---
 
 # Ask the AI About Code
 
-<p class="text-lead mb-6">AI is very good at <strong class="text-white">understanding and explaining</strong> code. I lean on this constantly.</p>
+<p class="text-lead">AI is very good at <strong class="text-white">understanding and explaining</strong> code. I lean on this constantly.</p>
 
 - I used to ask <em>"what is this doing? Why do we need this?"</em> in code reviews.
 - Now I just ask the AI. Usually it's faster than asking the author.
 - I do this while writing, while reviewing, while debugging.
 
-<div class="accent-box mt-6">
+<div class="accent-box">
   <p class="text-lg italic">This is the easy win. AI is a force multiplier for understanding code that already exists.</p>
 </div>
 
@@ -223,9 +274,9 @@ layout: section
 
 # Review the Code
 
-<p class="text-lead mb-4">As you work, look at the abstractions you're building. AI doesn't <em>build</em> good structure by default. But it can <strong class="text-white">talk about it fluently</strong>.</p>
+<p class="text-lead">As you work, look at the abstractions you're building. AI doesn't <em>build</em> good structure by default. But it can <strong class="text-white">talk about it fluently</strong>.</p>
 
-<p class="text-lg text-slate-400 mb-3">I ask it to evaluate against named principles:</p>
+<p class="text-lg text-slate-400">I ask it to evaluate against named principles:</p>
 
 - **Make Invalid States Unrepresentable**: encode rules in types.
 - **Parse, Don't Validate**: turn strings into structured values once, at the edge.
@@ -234,6 +285,13 @@ layout: section
 - **Separation of Concerns**: one module, one reason to change.
 
 <p class="text-sm text-slate-500 mt-4 italic">AI has read the whole internet. It knows what these mean. It just needs to be told to apply them.</p>
+
+<!--
+The gap is application, not knowledge. AI knows these principles theoretically —
+it can define them, give examples, even cite the books. It even helped me write
+this list (and most of this deck). But it hasn't been trained to *apply* them
+by default. Knowledge ≠ habit. Asking the right question is the human's job.
+-->
 
 ---
 
@@ -296,7 +354,7 @@ layout: two-cols-header
 
 ::left::
 
-<div class="text-xs uppercase text-slate-500 mb-2 font-mono">AI Default — Sloppy</div>
+<div class="text-xs uppercase ai-accent mb-2 font-mono">AI Default — Sloppy</div>
 
 ```html
 <p class="text-xl text-slate-300 mb-4">…</p>
@@ -356,7 +414,7 @@ I pick the path. AI handles the tedious bulk changes.
 
 # I Have a Claude Skill for This
 
-<p class="text-lead mb-6">A **Structural Code Analysis** skill that bundles these prompts.</p>
+<p class="text-lead mb-6">A <strong>Structural Code Analysis</strong> skill that bundles these prompts.</p>
 
 - It walks the AI through the principles and asks it to evaluate the current branch.
 - It surfaces the tensions, suggests options, and lets me pick the refactor.
@@ -390,12 +448,12 @@ layout: center
 class: text-center
 ---
 
-<p class="text-3xl text-slate-300 italic max-w-3xl mx-auto leading-relaxed">
-"AI is a powerful engine. You are the steering wheel."
+<p class="text-4xl font-bold text-white">
+You're still the engineer.
 </p>
 
-<p class="text-xl text-slate-500 mt-8 max-w-2xl mx-auto">
-If you let go of the wheel to go faster, you're just accelerating toward a wall.
+<p class="text-xl text-slate-400 mt-6">
+AI is fast. The discipline is yours.
 </p>
 
 <p class="text-aside mt-12 max-w-2xl mx-auto">
