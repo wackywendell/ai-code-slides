@@ -21,6 +21,7 @@ html {
   font-weight: 800;
   line-height: 1.05;
   color: #f1f5f9;
+  padding: 1rem 0;
 }
 
 .slidev-layout :where(h2) {
@@ -31,6 +32,14 @@ html {
 
 .slidev-layout :where(p) {
   color: #94a3b8;
+}
+
+/*
+ * Override slidev default theme: it sets `.slidev-layout p { line-height: 1.5rem }`
+ * — an absolute value that collapses lines at large font sizes. Match its
+ * specificity (0-1-1) so source order makes us win, and use a unitless multiplier.
+ */
+.slidev-layout p {
   line-height: 1.6;
 }
 
@@ -39,9 +48,15 @@ html {
 }
 
 .slidev-layout :where(ul > li) {
-  color: #cbd5e1;
   list-style-type: '→ ';
-  padding-left: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.slidev-layout :where(ul ul > li) {
+  color: #cbd5e1;
+  font-size: 0.85em;
+  padding: 0.15rem 0;
+  list-style-type: '· ';
 }
 
 .slidev-layout :where(pre, code) {
@@ -67,4 +82,13 @@ html {
 /* Override slidev default theme: it silently sets opacity:0.5 on h1+p. */
 .slidev-layout h1 + p {
   opacity: 1;
+}
+
+/*
+ * Default vertical rhythm for default-layout slides: every direct child after
+ * the first gets a top margin. This is what Tailwind's `space-y-N` does, but
+ * applied globally so we don't have to wrap every slide's body in a utility div.
+ */
+.slidev-layout.default > * + * {
+  margin-top: 1.25rem;
 }
