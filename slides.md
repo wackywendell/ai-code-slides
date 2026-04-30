@@ -1,6 +1,6 @@
 ---
 theme: default
-title: Engineering for Durability
+title: AI and Good Code
 info: |
   Engineering for Durability: Why Structure Still Matters with AI.
 author: Wendell Smith
@@ -40,7 +40,7 @@ class: flex flex-col justify-center
 
 <div>
 
-<h2>AI Is Amazing</h2>
+<h2 class="momentum-accent">AI Is Amazing</h2>
 
 - Knows *all* the languages, idioms, libraries
 - Explains unfamiliar code better than I do
@@ -119,47 +119,67 @@ layout: section
 # The Fast Path to Fragile Code
 
 ---
-layout: stage
-emoji: 🏎️
----
 
-# Stage 1: The Rush
+# The Fast Path
 
-- I tell the AI what I want
-- It builds a huge PR. Hundreds of changes.
-- The code is sloppy
-- But it fits the spec. And that's what matters.
+<div class="grid grid-cols-3 gap-6 mt-6">
 
----
-layout: stage
-emoji: 🌊
----
+<div>
+<h2 class="momentum-accent">Day 1</h2>
 
-# Stage 2: The Code Pulls Away
+- Great idea for a feature
+- Ask AI to build it
+- It writes a lot of code
+- It works
+- You feel fast
 
-- The codebase grows. Doubles. Triples.
-- I don't understand it anymore. Only the AI does.
-- Bugs appear. I have the AI fix them and write tests.
-- The tests pass. I'm not sure what they're really proving.
+</div>
 
----
-layout: stage
-emoji: 🕸️
----
+<v-click>
 
-# Stage 3: Getting Stuck
+<div>
+<h2 class="text-slate-300">Day 2</h2>
 
-- The codebase is bigger than any context window
-- I don't understand it. The AI struggles to navigate it too.
-- The tests are a mess; many are stubbed out because they don't work
-- Adding a feature is painful: tests fail, and the AI comments them out or rewrites their assumptions
-- The bug list grows faster than it shrinks
+- Edge cases appear
+- The code gets longer
+- You understand less of it
+- AI keeps getting through it
+- You keep going
+
+</div>
+
+</v-click>
+
+<v-click>
+
+<div>
+<h2 class="ai-accent">Day 3</h2>
+
+- The feature works
+  - The edge cases seem handled
+  - …but others may be lurking
+- <code class="text-green-400">+5,449</code> <code class="text-red-400">-4,141</code>
+  - You can't really review it
+  - …Neither can anyone else
+- It doesn't get merged.
+
+</div>
+
+</v-click>
+
+</div>
+
+<v-click>
+
+<Callout class="text-center !mt-12">What happened?</Callout>
+
+</v-click>
 
 ---
 layout: two-cols
 ---
 
-# What's Happening?
+# What Happened?
 
 <p class="text-lead">
 AI is great at writing code. It's not great at <em>living with</em> it.

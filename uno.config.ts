@@ -20,6 +20,11 @@ export default defineConfig({
 
     'speaker-label': 'text-xs uppercase font-mono tracking-widest',
 
+    // Momentum palette — AI going well / fast progress
+    'momentum-accent': 'text-emerald-400',
+    'momentum-bg': 'bg-emerald-500/10',
+    'momentum-border': 'border-emerald-500/40',
+
     // AI palette — disposable / make-it-work
     'ai-accent': 'text-orange-400',
     'ai-bg': 'bg-orange-500/10',
