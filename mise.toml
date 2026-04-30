@@ -13,6 +13,7 @@ outputs = ["node_modules/.package-lock.json"]
 [tasks.dev]
 description = "Run the slidev dev server"
 depends = ["install"]
+interactive = true
 run = "slidev --open"
 
 [tasks.build]
@@ -21,6 +22,6 @@ depends = ["install"]
 run = "slidev build"
 
 [tasks.export]
-description = "Export the deck to PDF"
+description = "Export the deck to PDF. May require installing Playwright."
 depends = ["install"]
 run = "slidev export"
