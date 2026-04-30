@@ -25,9 +25,63 @@ class: flex flex-col justify-center
   <span class="text-red-400 ml-3">-4,141</span>
 </div>
 
-# Engineering for Durability
+# AI and Good Code
 
-<p class="text-2xl text-slate-400">Why Structure Still Matters with AI</p>
+<p class="text-2xl text-slate-400">Software Engineering and The Day After Tomorrow</p>
+
+---
+
+<!--
+
+# AI is Amazing / Terrible
+-->
+
+<div class="grid grid-cols-2 gap-8 mt-12">
+
+<div>
+
+<h2>AI Is Amazing</h2>
+
+- Knows *all* the languages, idioms, libraries
+- Explains unfamiliar code better than I do
+- Generates working code quickly
+- Kinda feels like it can do my job?
+
+</div>
+
+<!--
+### And Yet. And Yet.
+ -->
+
+<v-click>
+
+<div>
+
+<h2 class="ai-accent">AI Slop Is Terrible</h2>
+
+- Huge diffs nobody wants to review
+- Code that works but is full of workarounds
+- Tests that prove less than they claim
+- Maintainers pushing back
+
+</div>
+
+</v-click>
+
+</div>
+
+<v-click>
+
+<Callout class="text-center !mt-16">How can both be true?</Callout>
+
+</v-click>
+
+<!--
+- Start with the optimistic side and let it breathe.
+- This is not a dunk on AI: it really is astonishing.
+- Then reveal the second side: everyone has seen AI-generated mess.
+- The talk lives in the tension between those two observations.
+-->
 
 ---
 
@@ -55,7 +109,7 @@ class: flex flex-col justify-center
 # Where We're Going
 
 - The fast path to fragile code
-- Why durable boundaries still matter
+- Why we care about code structure
 - Steering AI toward durable code
 
 ---
@@ -142,7 +196,7 @@ maintain the codebase three years later — but **you do**. Land that beat.
 layout: section
 ---
 
-# Why Durable Boundaries<br>Still Matter
+# Why We Care About<br>Code Structure
 
 <p class="text-section-sub">Software engineering is the discipline of building interfaces.</p>
 
@@ -173,18 +227,32 @@ Over decades, we built <strong>programming languages</strong> with type systems 
 
 <div class="accent-box">
   <p class="italic text-2xl">
-    Would AI create these durable boundaries on its own?
+    Would AI create these abstraction layers?
   </p>
 </div>
 
 </v-click>
 
 
-<Callout class="text-center">
-<v-click><span class="block !ai-accent">No.</span></v-click>
-
-<v-click><span class="block mt-3">But with your help, it can.</span></v-click>
+<Callout class="text-left">
+<div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+  <span v-click class="!ai-accent">No.</span>
+  <span v-click>Not on its own.</span>
+  <span v-click class="eng-accent">But with your help, it can.</span>
+</div>
 </Callout>
+
+<!--
+- First beat: no, not if the task is simply "build the thing".
+- If you asked for a spreadsheet, it would happily try to make a spreadsheet
+  directly — maybe all the way down at the wrong level of abstraction.
+- Second beat: not on its own. It knows the ideas, but it does not reliably
+  exercise engineering taste or choose durable layers without pressure.
+- Third beat: with human guidance, it can help a lot.
+- The engineer's job is to make the abstraction question explicit, pressure-test
+  the proposed layers, and choose what is actually load-bearing.
+- The point is not "more abstractions"; it is intentional abstractions.
+-->
 
 
 ---
@@ -635,6 +703,10 @@ layout: center
 class: text-center
 ---
 
+<!--
+# Thank You
+ -->
+
 <div class="text-5xl font-bold text-white">
 
 <p>Thank You!</p>
@@ -642,4 +714,3 @@ class: text-center
 <v-click><p>... Questions?</p></v-click>
 
 </div>
-

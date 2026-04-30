@@ -30,6 +30,7 @@ html {
   font-size: 2.75rem;
   font-weight: 700;
   color: #38bdf8;
+  margin: 0 0 0.9rem;
 }
 
 /*
@@ -48,7 +49,7 @@ html {
 
 .slidev-layout :where(ul > li) {
   list-style-type: '→ ';
-  padding: 0.5rem 0;
+  padding: 0.3rem 0;
 }
 
 .slidev-layout :where(ul ul > li) {
