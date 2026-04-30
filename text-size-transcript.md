@@ -115,3 +115,87 @@ Remove the per-element font-size overrides from style.css — let utility classe
 Add a small uno.config.ts with text-lead / text-section-sub shortcuts.
 Replace the text-xl text-slate-300 mb-4 clusters with text-lead.
 Want me to do all four, or just (1)+(2) first to see how the canvas change feels?
+
+…
+
+### Wendell
+
+OK. Have we balanced well across unocss, style.css, and :where setups? Can you look at those, think about where these are working, where they are fighting / clobbering each other, where they are at the wrong level?
+
+### Claude
+
+Audit of the three layers:
+
+#### What's working
+
+- **`:where()` for theme defaults** is correctly applied to most type rules (`h1`, `h2`, `strong`, `ul li`, `pre`) — they sit at zero specificity, so utility classes override naturally. This is the right architecture.
+- **`:where()` deliberately omitted** for `.slidev-layout p` and `.slidev-layout.default > * + *` because they need to *match* slidev's default specificity (0,1,1) to win on source order. Comments explain why. Good.
+- **UnoCSS shortcuts** are used the right way: typography (`text-lead`, `text-section-sub`), reusable patterns (`prompt-quote`, `claude-quote`), and named color palettes (ai/eng). All the things that benefit from inline application.
+- **Spacing system** has three non-overlapping rules — slide-level rhythm (`.default > * + *`), grid gap, and `speaker-label + *`. They handle different element relationships, no conflict.
+
+#### Where they're fighting / clobbering
+
+1. **Redundant color override in nested-`li`**:
+   ```css
+   .slidev-layout :where(ul ul > li) {
+     color: #cbd5e1;  /* now redundant — matches layout default */
+     ...
+   }
+   ```
+   When the layout default was slate-50, this dimmed nested bullets. Now layout default is slate-300, so this line is a no-op. **Drop it.**
+
+2. **Dead slidev CSS variables**:
+   ```css
+   :root {
+     --slidev-slide-bg: #0f172a;
+     --slidev-slide-text: #f8fafc;
+   }
+   ```
+   Declared but never referenced — `.slidev-layout` uses literal `#0f172a` directly. Same for `--slidev-code-background`/`-foreground`. Either use the variables consistently (DRY) or drop the `:root` block. They look load-bearing but aren't.
+
+3. **`speaker-label` is split across two layers**: visual styling in UnoCSS (`text-xs uppercase font-mono tracking-widest`), spacing rule in CSS (`.speaker-label + * { margin-top }`). It works, but it's a hidden coupling — someone changing the shortcut might miss the CSS pair. Comment in CSS calls this out, which is good. Could collapse into UnoCSS only by adding `mb-2` to the shortcut, but then it'd add bottom margin even when the label is the only child. Current split is defensible but worth knowing.
+
+#### Where they're at the wrong level
+
+4. **`.font-handwritten` is in CSS but should be a UnoCSS shortcut.** It's a pure utility class — `font-family` + `letter-spacing`. UnoCSS-style. Move it:
+   ```ts
+   'font-handwritten': 'font-["Caveat",cursive] tracking-[0.01em]',
+   ```
+   The font import has to stay in CSS, but the class definition should live with the other shortcuts.
+
+5. **Speech bubble shortcuts duplicate everything except border color**:
+   ```ts
+   'prompt-quote': 'border-l-4 border-sky-500 bg-slate-800/50 pl-6 pr-4 py-3 italic text-slate-300',
+   'claude-quote': 'border-l-4 border-orange-500 bg-slate-800/50 pl-6 pr-4 py-3 italic text-slate-300',
+   ```
+   DRY by extracting a base:
+   ```ts
+   'speech-bubble': 'border-l-4 bg-slate-800/50 pl-6 pr-4 py-3 italic text-slate-300',
+   'prompt-quote': 'speech-bubble border-sky-500',
+   'claude-quote': 'speech-bubble border-orange-500',
+   ```
+   Now the base structure has one source of truth; variants just pick a border color. Same pattern as the ai/eng palettes.
+
+6. **`.accent-box` lives in CSS but is used as a class on slides.** It could be a UnoCSS shortcut (`'accent-box': 'bg-sky-500/10 border-l-4 border-sky-500 px-8 py-6'`). The descendant rule `.accent-box :where(p, li) { color: #e2e8f0 }` would need to stay in CSS regardless (UnoCSS shortcuts can't target descendants). So the cost is small — split the styling like `speaker-label` already does. Or leave it in CSS for parity with the descendant rule. **Lean: leave it for now** — the descendant pairing makes the CSS-only home more cohesive.
+
+7. **Hex colors in CSS aren't tied to Tailwind tokens.** UnoCSS uses `slate-300`, `sky-400`, etc.; CSS uses raw `#cbd5e1`, `#38bdf8`. They're equivalent today but unlinked. A 4-line comment at the top of style.css mapping them helps:
+   ```css
+   /*
+    * Hex colors below correspond to Tailwind tokens used in UnoCSS:
+    * #0f172a slate-900 · #cbd5e1 slate-300 · #f1f5f9 slate-100
+    * #38bdf8 sky-400 · #fb923c orange-400
+    */
+   ```
+   Cheap, prevents drift.
+
+#### Suggested cleanup order
+
+If you want me to apply these:
+
+1. **Free wins** — drop the redundant `color: #cbd5e1` in nested-`li`, drop the unused `:root` variables (or wire them up).
+2. **DRY the speech bubbles** — extract `speech-bubble` base shortcut.
+3. **Move `.font-handwritten` to UnoCSS shortcuts.**
+4. **Add the hex-to-token comment** at the top of style.css.
+5. *(Skip `.accent-box` move — current placement is fine.)*
+
+Want me to do (1)–(4)?
