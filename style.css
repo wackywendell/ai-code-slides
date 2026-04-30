@@ -14,10 +14,9 @@ html {
 .slidev-layout {
   background-color: #0f172a;
   color: #f8fafc;
-  font-size: 1.35rem;
 }
 
-.slidev-layout h1 {
+.slidev-layout :where(h1) {
   font-size: 4rem;
   font-weight: 800;
   line-height: 1.05;
@@ -25,41 +24,37 @@ html {
   color: #f1f5f9;
 }
 
-.slidev-layout h2 {
+.slidev-layout :where(h2) {
   font-size: 2.75rem;
   font-weight: 700;
   margin-bottom: 2rem;
   color: #38bdf8;
 }
 
-.slidev-layout h3 {
+.slidev-layout :where(h3) {
   margin-bottom: 0.75rem;
 }
 
-.slidev-layout p {
-  font-size: 1.4rem;
+.slidev-layout :where(p) {
   color: #94a3b8;
   line-height: 1.6;
 }
 
-.slidev-layout ul > li {
-  font-size: 1.4rem;
+.slidev-layout :where(ul > li) {
   margin-bottom: 1rem;
   color: #cbd5e1;
   list-style-type: '→ ';
   padding-left: 0.5rem;
 }
 
-.slidev-layout pre,
-.slidev-layout code {
+.slidev-layout :where(pre, code) {
   font-family: 'Fira Code', monospace;
 }
 
-.slidev-layout pre {
-  background: #1e293b !important;
+.slidev-layout :where(pre) {
+  background: #1e293b;
   border: 1px solid #334155;
   border-radius: 0.5rem;
-  font-size: 1.05rem;
 }
 
 .accent-box {
@@ -68,7 +63,6 @@ html {
   padding: 1.5rem 2rem;
 }
 
-.accent-box p,
-.accent-box li {
+.accent-box :where(p, li) {
   color: #e2e8f0;
 }
