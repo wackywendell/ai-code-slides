@@ -462,63 +462,78 @@ Smaller canvas, everything else is bigger!
 </div>
 
 ---
-layout: two-cols-header
----
 
-# The "Primitive Trap"
+# I Asked About the Layers
 
-::left::
+<div class="grid grid-cols-2">
 
-<div class="text-xs uppercase ai-accent mb-2 font-mono">AI Default — Sloppy</div>
+<div>
+<div class="speaker-label eng-accent">Me</div>
 
-```html
-<p class="text-xl text-slate-300 mb-4">…</p>
-<p class="text-xl text-slate-300 mb-6">…</p>
-<p class="text-xl text-slate-300">…</p>
-<p class="text-xl text-slate-300 mb-6">…</p>
-<!-- repeated 8× across the deck -->
-```
+<Prompt>
 
-```css
-/* style.css — silently wins on specificity */
-.slidev-layout p { font-size: 1.4rem }
-```
+Have we balanced well across UnoCSS, style.css, and `:where` setups? Where are they working, where are they fighting, where are they at the wrong level?
 
-::right::
+</Prompt>
 
-<div class="text-xs uppercase text-sky-400 mb-2 font-mono">After Structural Review</div>
-
-```ts
-// uno.config.ts
-shortcuts: {
-  'text-lead': 'text-2xl text-slate-300',
-}
-```
-
-```html
-<p class="text-lead mb-6">…</p>
-```
-
-::bottom::
-
-<div class="mt-6 text-slate-400">
-  <strong>Primitive Obsession</strong> → <strong>Named Abstraction</strong>. The fix wasn't more CSS; it was understanding and using the abstractions.
 </div>
+
+<div>
+<div class="speaker-label ai-accent">Claude</div>
+
+<Claude>
+
+A few frictions:
+
+1. `.font-handwritten` lives in CSS but should be a UnoCSS shortcut.
+2. Speech-bubble shortcuts duplicate everything except border color. DRY them.
+3. Redundant `color` on nested `<li>` — dead since unifying body color.
+
+<em>… 80 lines …</em>
+
+</Claude>
+
+</div>
+
+</div>
+
+<Callout>AI won't clean up or refactor on its own.</Callout>
+
+Ask it to think about *what* to clean up or restructure. Then ask it to do so.
 
 ---
 
 # The 3-Step Review Cycle
 
-<StepRow :number="1" title="Identify Tensions">
-Ask AI: "Where does this code violate Parse-Don't-Validate?"
+<div class="flex items-start gap-4">
+
+<div class="flex-1">
+<StepRow :number="1" title="Audit Against Principles">
+<em>Review this diff with a focus on Local Reasoning - good interfaces and code boundaries, 'correct-by-construction' types. Consider the following principles: …</em>
+</StepRow>
+</div>
+
+<v-click>
+<div class="flex items-center self-start mt-12">
+  <svg viewBox="0 0 60 30" class="w-14 h-9 flex-none" stroke="#fb923c" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 55 15 Q 30 15, 8 18" />
+    <path d="M 8 18 L 15 13" />
+    <path d="M 8 18 L 14 23" />
+  </svg>
+  <div class="font-handwritten text-orange-300" style="font-size: 1.1rem; line-height: 1.1; max-width: 140px;">
+    Perhaps...<br>a Claude Skill?
+  </div>
+</div>
+</v-click>
+
+</div>
+
+<StepRow :number="2" title="Ask for Options">
+<em>The <code>foo_bar_baz</code> function has a lot of arguments, mostly primitives. What are some ways we could refactor that to produce better code structure?</em>
 </StepRow>
 
-<StepRow :number="2" title="Explore Options">
-Ask for two different ways to refactor the module boundary.
-</StepRow>
-
-<StepRow :number="3" title="Execute Refactor">
-I pick the path. AI handles the tedious bulk changes.
+<StepRow :number="3" title="Pick, Then Delegate">
+<em>Let's go with (b), but create a newtype for <code>Baz</code> to encapsulate its behavior.</em>
 </StepRow>
 
 
@@ -526,15 +541,23 @@ I pick the path. AI handles the tedious bulk changes.
 
 # I Have a Claude Skill for This
 
-<p class="text-lead mb-6">A <strong>Structural Code Analysis</strong> skill that bundles these prompts.</p>
+````markdown
+---
+name: code-structure
+description: Identify design tensions in code structure
+---
 
-- It walks the AI through the principles and asks it to evaluate the current branch.
-- It surfaces the tensions, suggests options, and lets me pick the refactor.
-- <strong class="text-white">It helps. It doesn't decide.</strong>
+### Make Invalid States Unrepresentable
 
-<div class="accent-box mt-6">
-  <p class="text-lg italic">A checklist, not a substitute for thinking.</p>
-</div>
+Reshape types so illegal combinations can't exist.
+
+**What to look for:**
+- Groups of fields that only make sense in certain combinations
+- Boolean flags creating an implicit state machine with impossible states
+- Parallel arrays that must be kept in sync
+````
+
+<Callout>The AI will make a good first pass - but bring your own judgment!</Callout>
 
 ---
 layout: section
