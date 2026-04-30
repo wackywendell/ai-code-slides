@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Fira+Code:wght@400;500&display=swap');
+
+:root {
+  --slidev-slide-bg: #0f172a;
+  --slidev-slide-text: #f8fafc;
+}
+
+html.dark,
+html {
+  --slidev-code-background: #1e293b;
+  --slidev-code-foreground: #f8fafc;
+}
+
+.slidev-layout {
+  background-color: #0f172a;
+  color: #f8fafc;
+}
+
+.slidev-layout h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.05;
+  margin-bottom: 1rem;
+  color: #f1f5f9;
+}
+
+.slidev-layout h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #38bdf8;
+}
+
+.slidev-layout p {
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+.slidev-layout ul > li {
+  font-size: 1.15rem;
+  margin-bottom: 0.75rem;
+  color: #cbd5e1;
+  list-style-type: '→ ';
+  padding-left: 0.5rem;
+}
+
+.slidev-layout pre,
+.slidev-layout code {
+  font-family: 'Fira Code', monospace;
+}
+
+.slidev-layout pre {
+  background: #1e293b !important;
+  border: 1px solid #334155;
+  border-radius: 0.5rem;
+}
+
+.accent-box {
+  background: rgba(56, 189, 248, 0.1);
+  border-left: 4px solid #38bdf8;
+  padding: 1.5rem 2rem;
+}
+
+.accent-box p,
+.accent-box li {
+  color: #e2e8f0;
+}

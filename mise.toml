@@ -1,0 +1,26 @@
+[tools]
+node = "22"
+
+[env]
+_.path = ["./node_modules/.bin"]
+
+[tasks.install]
+description = "Install npm dependencies"
+run = "npm install"
+sources = ["package.json"]
+outputs = ["node_modules/.package-lock.json"]
+
+[tasks.dev]
+description = "Run the slidev dev server"
+depends = ["install"]
+run = "slidev --open"
+
+[tasks.build]
+description = "Build the deck to a static SPA in dist/"
+depends = ["install"]
+run = "slidev build"
+
+[tasks.export]
+description = "Export the deck to PDF"
+depends = ["install"]
+run = "slidev export"
