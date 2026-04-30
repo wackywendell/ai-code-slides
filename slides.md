@@ -30,6 +30,35 @@ class: flex flex-col justify-center
 <p class="text-2xl text-slate-400">Why Structure Still Matters with AI</p>
 
 ---
+
+# AI and Good Code
+
+<Callout>What do you bring to the table when AI writes the code?</Callout>
+
+<v-click>
+
+<Callout>What is good code?</Callout>
+
+</v-click>
+
+<!--
+- Personal setup: AI is incredibly powerful.
+- It writes, explains, fixes, tests, and keeps momentum going.
+- But sometimes it is powerful and still misguided.
+- It can compile, pass tests, and satisfy the request while missing the shape.
+- So: if AI writes the code, what is my role?
+- And: was "good code" always about more than making the program run?
+-->
+
+---
+
+# Where We're Going
+
+- The fast path to fragile code
+- Why durable boundaries still matter
+- Steering AI toward durable code
+
+---
 layout: section
 ---
 
@@ -132,29 +161,31 @@ layout: section
 
 # A Thought Experiment
 
-<p class="text-lead">
+<p>
 Imagine all we had was <strong class="text-white">assembly</strong> and <strong class="text-white">raw disks</strong>. Read bytes from memory. Write bytes to disk. That's it.
 </p>
 
-<p class="text-lead">
+<p>
 Over decades, we built <strong>programming languages</strong> with type systems and modules. And <strong>filesystems</strong> with directories, ownership, and permissions.
 </p>
 
 <v-click>
 
-<div class="accent-box mt-4">
-  <p class="text-2xl italic">
-    Would AI, starting from assembly and disks, have invented programming languages and filesystems?
+<div class="accent-box">
+  <p class="italic text-2xl">
+    Would AI create these durable boundaries on its own?
   </p>
 </div>
 
 </v-click>
 
-<v-click>
 
-<Callout class="text-center"><span class="!ai-accent">I don't think so.</span></Callout>
+<Callout class="text-center">
+<v-click><span class="block !ai-accent">No.</span></v-click>
 
-</v-click>
+<v-click><span class="block mt-3">But with your help, it can.</span></v-click>
+</Callout>
+
 
 ---
 
@@ -235,26 +266,32 @@ deserves different answers in different teams, codebases, and stages.
 # Your Role
 
 - **Ensure it's Good Code.**
-  - PR reviews exist for a reason.
-  - OSS projects are rejecting AI-driven PRs.
+  - PR reviews exist because generated code still needs ownership.
+  - "It passes tests" is not the same as "we can maintain it."
 - **Choose the right abstractions.**
-  - Humans invented programming languages and filesystems.
-  - Your codebase needs the same kind of thinking.
+  - Humans invented languages, filesystems, modules, APIs.
+  - Your codebase needs the same kind of boundary-setting.
 - **Live with the consequences.**
-  - AI will happily generate 8-argument functions, leaky abstractions, workarounds.
-  - AI won't have to debug these in three months. You will.
+  - AI will generate 8-argument functions, leaky abstractions, workarounds.
+  - AI won't debug this in three months. You will.
+
+<!--
+The value is not "humans must manually inspect every character."
+The value is ownership: deciding what matters, where boundaries belong, and
+what future readers/operators should be able to understand locally.
+-->
 
 ---
 
-# When You're Fighting the AI
+# Turn Friction Into Instructions
 
 <p class="text-lead">Friction means <strong class="text-white">you know something the AI doesn't.</strong></p>
 
-- AI avoids breaking changes. It's a greenfield project.
-- AI expands scope. You want a reviewable PR.
-- AI writes cavalier code. This is sensitive prod.
+- "Keep this PR reviewable; do not rewrite unrelated files."
+- "Preserve the public API unless we explicitly decide to migrate it."
+- "This is a sensitive prod path; prefer boring code and clear failure modes."
 
-<Callout>Explicit is better than implicit.</Callout>
+<Callout>Explicit constraints beat implied preferences.</Callout>
 
 ---
 
@@ -272,25 +309,26 @@ deserves different answers in different teams, codebases, and stages.
 
 ---
 
-# Review the Code
+# Review for Structure
 
-<p class="text-lead">As you work, look at the abstractions you're building. AI doesn't <em>build</em> good structure by default. But it can <strong class="text-white">talk about it fluently</strong>.</p>
+<p class="text-lead">AI can talk fluently about good structure. Ask it to apply that knowledge to the code in front of you.</p>
 
-<p class="text-lg text-slate-400">I ask it to evaluate against named principles:</p>
+<p>Use named principles as review lenses:</p>
 
 - **Make Invalid States Unrepresentable**: encode rules in types.
 - **Parse, Don't Validate**: turn strings into structured values once, at the edge.
 - **Functional Core, Imperative Shell**: keep logic pure; isolate side effects.
 - **Co-locate Decisions with Data**: the code that decides should sit next to what it decides about.
-- **Separation of Concerns**: one module, one reason to change.
 
-<p class="text-sm text-slate-500 mt-4 italic">AI has read the whole internet. It knows what these mean. It just needs to be told to apply them.</p>
+<p class="text-sm text-slate-500 mt-4 italic">The strange part: AI can explain these principles fluently, then ignore them in the next diff.</p>
 
 <!--
-The gap is application, not knowledge. AI knows these principles theoretically —
-it can define them, give examples, even cite the books. It even helped me write
-this list (and most of this deck). But it hasn't been trained to *apply* them
-by default. Knowledge ≠ habit. Asking the right question is the human's job.
+- This is the paradox: knowledge is not habit.
+- AI really has seen these principles everywhere: books, blogs, talks, code reviews.
+- It can explain them, give examples, and often apply them well when asked.
+- But the default prompt is usually "make this work", not "make this structurally sound".
+- Named principles give it a lens for the code in front of it.
+- The human move: choose the lens that matches the risk and the codebase.
 -->
 
 ---
@@ -497,7 +535,7 @@ A few frictions:
 
 </div>
 
-<Callout>AI won't clean up or refactor on its own.</Callout>
+<Callout>AI won't clean up or refactor unless you ask.</Callout>
 
 Ask it to think about *what* to clean up or restructure. Then ask it to do so.
 
@@ -571,10 +609,10 @@ layout: section
 
 <div class="accent-box">
 
-- <strong class="text-white text-xl">Self-Documenting:</strong> the interface tells the story, not the comments.
-- <strong class="text-white text-xl">Durable Structure:</strong> can I change a business rule without touching ten files?
-- <strong class="text-white text-xl">Human Context:</strong> "I chose this because…", not "the AI did it."
-- <strong class="text-white text-xl">Auditable PR:</strong> small enough that a human can actually review it.
+- <strong class="text-white text-xl">Reviewable:</strong> small enough that a human can actually inspect it.
+- <strong class="text-white text-xl">Local:</strong> can I change one business rule without touching ten files?
+- <strong class="text-white text-xl">Constrained:</strong> does the interface make invalid states hard to express?
+- <strong class="text-white text-xl">Owned:</strong> "I chose this because…", not "the AI did it."
 
 </div>
 

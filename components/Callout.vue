@@ -1,5 +1,5 @@
 <template>
-  <p class="text-3xl font-bold text-white leading-tight my-8">
+  <div class="text-2xl font-bold text-white leading-tight my-6">
     <slot />
-  </p>
+  </div>
 </template>
