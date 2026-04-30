@@ -62,7 +62,7 @@ class: flex flex-col justify-center
 layout: section
 ---
 
-# How It Goes
+# The Fast Path to Fragile Code
 
 ---
 layout: stage
@@ -142,9 +142,9 @@ maintain the codebase three years later — but **you do**. Land that beat.
 layout: section
 ---
 
-# But We Know This
+# Why Durable Boundaries<br>Still Matter
 
-<p class="text-section-sub mt-4">Software engineering is the discipline of building interfaces.</p>
+<p class="text-section-sub">Software engineering is the discipline of building interfaces.</p>
 
 ---
 
@@ -234,7 +234,9 @@ Over decades, we built <strong>programming languages</strong> with type systems 
 layout: section
 ---
 
-# What To Do
+# Steering AI<br>Toward Durable Code
+
+<p class="text-section-sub">What <strong>you</strong> bring to the table</p>
 
 ---
 
@@ -309,11 +311,11 @@ what future readers/operators should be able to understand locally.
 
 ---
 
-# Review for Structure
+# Guide the Structure
 
-<p class="text-lead">AI can talk fluently about good structure. Ask it to apply that knowledge to the code in front of you.</p>
+<p class="text-lead">AI can talk fluently about good structure. Ask it to apply that knowledge while planning, building, and reviewing.</p>
 
-<p>Use named principles as review lenses:</p>
+<p>Use named principles as working lenses:</p>
 
 - **Make Invalid States Unrepresentable**: encode rules in types.
 - **Parse, Don't Validate**: turn strings into structured values once, at the edge.
@@ -327,7 +329,7 @@ what future readers/operators should be able to understand locally.
 - AI really has seen these principles everywhere: books, blogs, talks, code reviews.
 - It can explain them, give examples, and often apply them well when asked.
 - But the default prompt is usually "make this work", not "make this structurally sound".
-- Named principles give it a lens for the code in front of it.
+- Named principles give it a lens for the work in front of it.
 - The human move: choose the lens that matches the risk and the codebase.
 -->
 
@@ -541,13 +543,13 @@ Ask it to think about *what* to clean up or restructure. Then ask it to do so.
 
 ---
 
-# The 3-Step Review Cycle
+# The 3-Step Work Cycle
 
 <div class="flex items-start gap-4">
 
 <div class="flex-1">
-<StepRow :number="1" title="Audit Against Principles">
-<em>Review this diff with a focus on Local Reasoning - good interfaces and code boundaries, 'correct-by-construction' types. Consider the following principles: …</em>
+<StepRow :number="1" title="Ask About Structure">
+<em>Before implementing, sketch the abstraction layers and code boundaries. Use Local Reasoning and correct-by-construction types as guiding principles.</em>
 </StepRow>
 </div>
 
@@ -579,23 +581,35 @@ Ask it to think about *what* to clean up or restructure. Then ask it to do so.
 
 # I Have a Claude Skill for This
 
-````markdown
+```markdown
 ---
 name: code-structure
 description: Identify design tensions in code structure
 ---
 
-### Make Invalid States Unrepresentable
+Goal: code that is easier to read, harder to misuse,
+and more resilient to change.
 
-Reshape types so illegal combinations can't exist.
+Apply only the principles that matter:
+- Make Invalid States Unrepresentable
+- Parse, Don't Validate
+- Functional Core, Imperative Shell
+- Co-locate Decisions with Data
 
-**What to look for:**
-- Groups of fields that only make sense in certain combinations
-- Boolean flags creating an implicit state machine with impossible states
-- Parallel arrays that must be kept in sync
-````
+For each tension:
+- What's happening?
+- Why does it matter?
+- Is the fix obvious, tradeoff-heavy, or constrained?
+```
 
-<Callout>The AI will make a good first pass - but bring your own judgment!</Callout>
+<Callout>It gives the AI a job, a vocabulary, and a shape for the answer.</Callout>
+
+<!--
+- The skill doesn't make the AI "correct" by default.
+- It makes the opening move better: more structured, more specific, less vibe-based.
+- Treat the answer as the start of a design discussion.
+- Follow through: ask for options, choose the tradeoff, then make the code match the decision.
+-->
 
 ---
 layout: section
@@ -605,14 +619,14 @@ layout: section
 
 ---
 
-# A New Definition of Done
+# While You Work With AI
 
 <div class="accent-box">
 
-- <strong class="text-white text-xl">Reviewable:</strong> small enough that a human can actually inspect it.
-- <strong class="text-white text-xl">Local:</strong> can I change one business rule without touching ten files?
-- <strong class="text-white text-xl">Constrained:</strong> does the interface make invalid states hard to express?
-- <strong class="text-white text-xl">Owned:</strong> "I chose this because…", not "the AI did it."
+- Can I explain why this structure exists?
+- Is the PR small enough to review the important decisions?
+- Can a future change happen locally?
+- Did I give the AI the constraints it needed?
 
 </div>
 
@@ -621,16 +635,11 @@ layout: center
 class: text-center
 ---
 
-<p class="text-4xl font-bold text-white">
-You're still the engineer.
-</p>
+<div class="text-5xl font-bold text-white">
 
-<p class="text-xl text-slate-400 mt-6">
-AI is fast. The discipline is yours.
-</p>
+<p>Thank You!</p>
 
-<p class="text-aside mt-12 max-w-2xl mx-auto">
-P.S. This entire deck was built with Claude. The CSS slide is real.
-</p>
+<v-click><p>... Questions?</p></v-click>
 
-<p class="mt-12 text-sky-400 font-bold text-2xl">Questions?</p>
+</div>
+
