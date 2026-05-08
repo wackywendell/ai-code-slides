@@ -287,39 +287,48 @@ Over decades, we built <strong>programming languages</strong> with type systems 
 
 <v-click><Callout>Good code reduces how much you have to <strong>read</strong> and <strong>remember</strong>.</Callout></v-click>
 
-  <div class="grid grid-cols-2 gap-6 mt-6">
-
-  <v-click>
-  <div class="accent-box">
-    <h3 class="text-2xl font-bold eng-accent mb-2">Local Reasoning</h3>
-    <ul>
-      <li>Clear interfaces</li>
-      <li>Small modules</li>
-      <li>Loose coupling</li>
-    </ul>
-  </div>
-  </v-click>
-
-  <v-click>
-  <div class="accent-box">
-    <h3 class="text-2xl font-bold eng-accent mb-2">Built-In Invariants</h3>
-    <ul>
-      <li>Types</li>
-      <li>Parsers</li>
-      <li>Constrained constructors</li>
-    </ul>
-  </div>
-  </v-click>
-
-  </div>
-
 <!--
 - There are books and books about 'Good Code' out there, lots of ideas there
 - But for the purposes of this talk, two properties matter.
+- Read less: reduce the context needed for a change.
+- Remember less: put more of the rules into the structure.
+- Next slide makes that concrete.
+- AI makes the question sharper, not obsolete.
+-->
+
+---
+
+# Good Code Structure
+
+<div class="grid grid-cols-2 gap-6">
+
+<div class="accent-box">
+  <h3 class="eng-accent">Local Reasoning</h3>
+  <h4><em>Read Less</em></h4>
+  <ul>
+    <li>Clear interfaces</li>
+    <li>Small modules</li>
+    <li>Loose coupling</li>
+  </ul>
+</div>
+
+<div class="accent-box">
+  <h3 class="eng-accent">Built-In Invariants</h3>
+  <h4><em>Remember Less</em></h4>
+  <ul>
+    <li>Types</li>
+    <li>Parsers</li>
+    <li>Constrained constructors</li>
+  </ul>
+</div>
+
+</div>
+
+<!--
 - Read less: interfaces, modules, APIs give you local reasoning.
 - Remember less: types, parsers, constructors carry the rules.
 - Type systems are the obvious example: annoying upfront, fewer surprises later.
-- AI makes the question sharper, not obsolete.
+- Good structure moves work earlier so later changes are simpler.
 -->
 
 ---
@@ -438,15 +447,29 @@ layout: section
 
 # Guide the Structure
 
-<p class="text-lead">AI can talk fluently about good structure. Ask it to apply that knowledge while planning, building, and reviewing.</p>
+<p class="text-lead">Give AI the structural lens you want it to use.</p>
 
-<p>Use named principles as working lenses:</p>
+<div class="grid grid-cols-2 gap-6">
 
-- **Local Reasoning**: make changes without loading the whole system.
-- **Make Invalid States Unrepresentable**: encode rules in types.
-- **Parse, Don't Validate**: turn strings into structured values once, at the edge.
-- **Functional Core, Imperative Shell**: keep logic pure; isolate side effects.
-- **Co-locate Decisions with Data**: the code that decides should sit next to what it decides about.
+<div class="accent-box">
+  <h3 class="eng-accent">Read Less</h3>
+  <ul>
+    <li>Local Reasoning</li>
+    <li>Functional Core, Imperative Shell</li>
+    <li>Co-locate Decisions with Data</li>
+  </ul>
+</div>
+
+<div class="accent-box">
+  <h3 class="eng-accent">Remember Less</h3>
+  <ul>
+    <li>Make Invalid States Unrepresentable</li>
+    <li>Parse, Don't Validate</li>
+    <li>Immutability by Default</li>
+  </ul>
+</div>
+
+</div>
 
 <p class="text-sm text-slate-500 mt-4 italic">The strange part: AI can explain these principles fluently, then ignore them in the next diff.</p>
 
@@ -455,17 +478,17 @@ layout: section
 - AI really has seen these principles everywhere: books, blogs, talks, code reviews.
 - It can explain them, give examples, and often apply them well when asked.
 - But the default prompt is usually "make this work", not "make this structurally sound".
-- This connects back to read less / remember less.
-- Local reasoning: reduce what you have to read.
-- Invalid states / parsing: reduce what you have to remember.
+- This is what I actually do: give the agent a named design lens.
+- Not every principle applies every time.
+- Read less: boundaries, ownership, separating core logic from effects.
+- Remember less: types, parsing, immutability, fewer invalid states.
 - Rust is the familiar version: more thinking upfront, fewer weird states later.
-- Named principles give AI a lens for the work in front of it.
-- The human move: choose the lens that matches the risk and the codebase.
+- The human move: choose the lens that fits the risk and the codebase.
 -->
 
 ---
 
-# I Asked for a Feature
+# Asking for a Feature
 
 <div class="grid grid-cols-2">
 
@@ -516,7 +539,7 @@ layout: section
 
 ---
 
-# I Asked About the Code
+# Asking About the Code
 
 <div class="grid grid-cols-2">
 
@@ -580,7 +603,7 @@ What is a rem?
 
 ---
 
-# I Asked About the Design
+# Asking About the Design
 
 <div class="grid grid-cols-2">
 
@@ -633,7 +656,7 @@ Smaller canvas, everything else is bigger!
 
 ---
 
-# I Asked About the Layers
+# Asking About the Layers
 
 <div class="grid grid-cols-2">
 
