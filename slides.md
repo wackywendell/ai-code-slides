@@ -209,13 +209,10 @@ AI is great at writing code. It's not great at <em>living with</em> it.
 </div>
 
 <!--
-"In school" is intentionally broad. Talk about it: college CS assignments,
-LeetCode-style interview prep, weekend projects. I came from physics — data
-analysis scripts, write-once-get-the-result, throw it away. That's where most
-of AI's training data comes from. The internet is mostly disposable code.
-
-The punchline lives at the end of the third bullet. It doesn't have to
-maintain the codebase three years later — but **you do**. Land that beat.
+- "In school" is broad on purpose: CS assignments, interviews, weekend projects.
+- My version: physics scripts, get the result, throw it away.
+- A lot of training data has that disposable-code shape.
+- Land the last beat: AI does not maintain this in three years. **You do**.
 -->
 
 ---
@@ -269,15 +266,15 @@ Over decades, we built <strong>programming languages</strong> with type systems 
 </Callout>
 
 <!--
-- First beat: no, not if the task is simply "build the thing".
-- If you asked for a spreadsheet, it would happily try to make a spreadsheet
+1. No, not if the task is simply "build the thing".
+  - If you asked for a spreadsheet, it would happily try to make a spreadsheet
   directly — maybe all the way down at the wrong level of abstraction.
-- Second beat: not on its own. It knows the ideas, but it does not reliably
-  exercise engineering taste or choose durable layers without pressure.
-- Third beat: with human guidance, it can help a lot.
-- The engineer's job is to make the abstraction question explicit, pressure-test
-  the proposed layers, and choose what is actually load-bearing.
-- The point is not "more abstractions"; it is intentional abstractions.
+2. It knows the ideas, but does not reliably choose durable layers.
+3. With human guidance, it can help a lot.
+   - Your job: make the abstraction question explicit.
+   - Pressure-test the proposed layers.
+   - Choose what is actually load-bearing.
+   - Not "more abstractions"; intentional abstractions.
 -->
 
 
@@ -288,7 +285,42 @@ Over decades, we built <strong>programming languages</strong> with type systems 
 
 <p class="text-lead">Good code is <strong>maintainable</strong> and <strong>extendable</strong>.</p>
 
-<Callout>Good code lets you change one thing without reading everything.</Callout>
+<v-click><Callout>Good code reduces how much you have to <strong>read</strong> and <strong>remember</strong>.</Callout></v-click>
+
+  <div class="grid grid-cols-2 gap-6 mt-6">
+
+  <v-click>
+  <div class="accent-box">
+    <h3 class="text-2xl font-bold eng-accent mb-2">Local Reasoning</h3>
+    <ul>
+      <li>Clear interfaces</li>
+      <li>Small modules</li>
+      <li>Loose coupling</li>
+    </ul>
+  </div>
+  </v-click>
+
+  <v-click>
+  <div class="accent-box">
+    <h3 class="text-2xl font-bold eng-accent mb-2">Built-In Invariants</h3>
+    <ul>
+      <li>Types</li>
+      <li>Parsers</li>
+      <li>Constrained constructors</li>
+    </ul>
+  </div>
+  </v-click>
+
+  </div>
+
+<!--
+- There are books and books about 'Good Code' out there, lots of ideas there
+- But for the purposes of this talk, two properties matter.
+- Read less: interfaces, modules, APIs give you local reasoning.
+- Remember less: types, parsers, constructors carry the rules.
+- Type systems are the obvious example: annoying upfront, fewer surprises later.
+- AI makes the question sharper, not obsolete.
+-->
 
 ---
 
@@ -347,14 +379,11 @@ layout: section
 <Callout>That context has to come from you.</Callout>
 
 <!--
-This is the third reason humans are still in the loop, and it's the deepest one.
-The first two (AI doesn't apply structure by default; AI's context window is
-finite) are about AI's limits as a coder. This one is about AI's limits as a
-judgment-maker. Even if AI perfectly applied every principle, it still wouldn't
-know whether this code matters.
-
-Lean into it: only you know whether to be careful or fast. The same prompt
-deserves different answers in different teams, codebases, and stages.
+- Third reason humans are still in the loop.
+- First two: AI does not apply structure by default; context is finite.
+- This one is judgment: does this code matter?
+- Only you know whether to be careful or fast.
+- Same prompt, different right answer depending on team, codebase, stage.
 -->
 
 ---
@@ -372,9 +401,11 @@ deserves different answers in different teams, codebases, and stages.
   - AI won't debug this in three months. You will.
 
 <!--
-The value is not "humans must manually inspect every character."
-The value is ownership: deciding what matters, where boundaries belong, and
-what future readers/operators should be able to understand locally.
+- Not "humans must inspect every character."
+- The value is ownership.
+- Decide what matters.
+- Decide where boundaries belong.
+- Decide what future readers/operators should understand locally.
 -->
 
 ---
@@ -411,6 +442,7 @@ what future readers/operators should be able to understand locally.
 
 <p>Use named principles as working lenses:</p>
 
+- **Local Reasoning**: make changes without loading the whole system.
 - **Make Invalid States Unrepresentable**: encode rules in types.
 - **Parse, Don't Validate**: turn strings into structured values once, at the edge.
 - **Functional Core, Imperative Shell**: keep logic pure; isolate side effects.
@@ -423,7 +455,11 @@ what future readers/operators should be able to understand locally.
 - AI really has seen these principles everywhere: books, blogs, talks, code reviews.
 - It can explain them, give examples, and often apply them well when asked.
 - But the default prompt is usually "make this work", not "make this structurally sound".
-- Named principles give it a lens for the work in front of it.
+- This connects back to read less / remember less.
+- Local reasoning: reduce what you have to read.
+- Invalid states / parsing: reduce what you have to remember.
+- Rust is the familiar version: more thinking upfront, fewer weird states later.
+- Named principles give AI a lens for the work in front of it.
 - The human move: choose the lens that matches the risk and the codebase.
 -->
 
