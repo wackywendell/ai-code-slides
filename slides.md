@@ -27,12 +27,13 @@ class: flex flex-col justify-center
 
 # AI and Good Code
 
-<p class="text-2xl text-slate-400">Software Engineering and The Day After Tomorrow</p>
+<p class="text-2xl text-slate-400">What even is software engineering anymore?</p>
 
 <!--
-- A bit grandiose.
-- But the uncertainty is real: AI is doing more every day. What do engineers do?
-- This is a talk about that: our role as engineers in the days of AI.
+- Start with the question honestly.
+- AI is making the boundaries of software engineering feel less obvious.
+- This talk is a reflection, not a prediction.
+- The thread: what engineers still do: judgment, structure, ownership.
 -->
 
 ---
@@ -302,9 +303,9 @@ Over decades, we built <strong>programming languages</strong> with type systems 
 
 <div class="grid grid-cols-2 gap-6">
 
-<div class="accent-box">
-  <h3 class="eng-accent">Local Reasoning</h3>
-  <h4><em>Read Less</em></h4>
+<div class="accent-box lens-read-card">
+  <h3 class="lens-read-accent">Local Reasoning</h3>
+  <h4 class="lens-read-accent"><em>Read Less</em></h4>
   <ul>
     <li>Clear interfaces</li>
     <li>Small modules</li>
@@ -312,9 +313,9 @@ Over decades, we built <strong>programming languages</strong> with type systems 
   </ul>
 </div>
 
-<div class="accent-box">
-  <h3 class="eng-accent">Built-In Invariants</h3>
-  <h4><em>Remember Less</em></h4>
+<div class="accent-box lens-remember-card">
+  <h3 class="lens-remember-accent">Built-In Invariants</h3>
+  <h4 class="lens-remember-accent"><em>Remember Less</em></h4>
   <ul>
     <li>Types</li>
     <li>Parsers</li>
@@ -447,12 +448,12 @@ layout: section
 
 # Guide the Structure
 
-<p class="text-lead">Give AI the structural lens you want it to use.</p>
+<p class="text-lead">Prompt the AI to think about Good Code.</p>
 
 <div class="grid grid-cols-2 gap-6">
 
-<div class="accent-box">
-  <h3 class="eng-accent">Read Less</h3>
+<div class="accent-box lens-read-card">
+  <h3 class="lens-read-accent">Read Less</h3>
   <ul>
     <li>Local Reasoning</li>
     <li>Functional Core, Imperative Shell</li>
@@ -460,8 +461,8 @@ layout: section
   </ul>
 </div>
 
-<div class="accent-box">
-  <h3 class="eng-accent">Remember Less</h3>
+<div class="accent-box lens-remember-card">
+  <h3 class="lens-remember-accent">Remember Less</h3>
   <ul>
     <li>Make Invalid States Unrepresentable</li>
     <li>Parse, Don't Validate</li>

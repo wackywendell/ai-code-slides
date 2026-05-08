@@ -117,6 +117,22 @@ html {
   margin: 0;
 }
 
+.lens-read-card {
+  border-left-color: #818cf8;
+}
+
+.lens-remember-card {
+  border-left-color: #2dd4bf;
+}
+
+.lens-read-accent {
+  color: #a5b4fc;
+}
+
+.lens-remember-accent {
+  color: #5eead4;
+}
+
 /* Override slidev default theme: it silently sets opacity:0.5 on h1+p. */
 .slidev-layout h1 + p {
   opacity: 1;
