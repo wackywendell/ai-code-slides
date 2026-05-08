@@ -29,6 +29,12 @@ class: flex flex-col justify-center
 
 <p class="text-2xl text-slate-400">Software Engineering and The Day After Tomorrow</p>
 
+<!--
+- A bit grandiose.
+- But the uncertainty is real: AI is doing more every day. What do engineers do?
+- This is a talk about that: our role as engineers in the days of AI.
+-->
+
 ---
 
 <!--
@@ -78,7 +84,7 @@ class: flex flex-col justify-center
 
 <!--
 - Start with the optimistic side and let it breathe.
-- This is not a dunk on AI: it really is astonishing.
+- This talk is not a dunk on AI: it really is astonishing.
 - Then reveal the second side: everyone has seen AI-generated mess.
 - The talk lives in the tension between those two observations.
 -->
@@ -338,7 +344,7 @@ layout: section
 - What's the cost of a breaking change?
 - How many pages did we get last month? For what?
 
-<Callout>No LLM has access to that.</Callout>
+<Callout>That context has to come from you.</Callout>
 
 <!--
 This is the third reason humans are still in the loop, and it's the deepest one.
