@@ -92,41 +92,53 @@ class: flex flex-col justify-center
 ---
 
 <!--
-# AI and Good Code
+# AI and Software Engineering
 -->
 
-<h1><span class="ai-accent">AI</span> and <span class="eng-accent">Good Code</span></h1>
+<h1><span class="ai-accent">AI</span> and <span class="eng-accent">Software Engineering</span></h1>
+
+<div class="grid grid-cols-2 items-center gap-8">
+
+<div>
+
+<Callout>What are <span class="eng-accent">engineers</span> doing when <span class="ai-accent">AI</span> writes code?</Callout>
+
+</div>
 
 <v-click>
-<Callout>What do <span class="eng-accent">engineers</span> bring to the table when <span class="ai-accent">AI</span> is writing the code?</Callout>
+<img
+  src="/images/what-would-you-say.webp"
+  alt="Office Space meme: so what would you say you do here?"
+  class="w-full rounded border border-slate-700 shadow-lg"
+/>
 </v-click>
 
-<v-click>
-<Callout>What even is <span class="eng-accent">good code</span>?</Callout>
-</v-click>
+</div>
 
 <!--
 - Personal setup: AI is incredibly powerful.
 - It writes, explains, fixes, tests, and keeps momentum going.
 - But sometimes it is powerful and still misguided.
 - It can compile, pass tests, and satisfy the request while missing the shape.
-- So: if AI writes the code, what is my role?
-- And: was "good code" always about more than making the program run?
+- The joke lands because there is a real version of the question.
+- If AI can write the code, what is my role?
+- The answer depends on what we mean by software engineering.
+- And on whether "good code" was always about more than making the program run.
 -->
 
 ---
 
-# Where We're Going
+# Table of Contents
 
-- The fast path to fragile code
-- Why we care about code structure
+- Fragile code
+- Code structure and why we care
 - Steering AI toward durable code
 
 ---
 layout: section
 ---
 
-# The Fast Path to Fragile Code
+# Fragile Code
 
 ---
 
@@ -171,6 +183,7 @@ layout: section
 - <code class="text-green-400">+5,449</code> <code class="text-red-400">-4,141</code>
   - You can't really review it
   - …Neither can anyone else
+- Tests are stubbed out
 - It doesn't get merged.
 
 </div>
@@ -186,7 +199,6 @@ layout: section
 </v-click>
 
 ---
----
 
 # What Happened?
 
@@ -194,13 +206,18 @@ layout: section
 
 <div>
 
-<p class="text-lead">
-AI is great at writing code.<br>It's not great at <em>living with</em> it.
-</p>
+<p class="text-lead">AI is great at writing code.<br>It's not great at <em>living with</em> it.</p>
 
-- We learned to write code this way in school:<br>solve the problem just well enough. Move on.
-- AI is trained the same way. Make it work. Move on.
-- It doesn't have to maintain the codebase a year later.
+<ul>
+  <li>School: solve it, move on</li>
+  <li>AI Training: make it work, move on</li>
+  <li>
+    <v-switch>
+      <template #0>Maintenance: a problem for later</template>
+      <template #1>Maintenance: a problem for <strong>you</strong> later 😬</template>
+    </v-switch>
+  </li>
+</ul>
 
 </div>
 
@@ -221,14 +238,16 @@ AI is great at writing code.<br>It's not great at <em>living with</em> it.
 - "In school" is broad on purpose: CS assignments, interviews, weekend projects.
 - My version: physics scripts, get the result, throw it away.
 - A lot of training data has that disposable-code shape.
-- Land the last beat: AI does not maintain this in three years. **You do**.
+- First say the disposable-code version: maintenance is a problem for later.
+- Then click: later means you.
+- Land the beat: AI does not maintain this in a year. **You do**.
 -->
 
 ---
 layout: section
 ---
 
-# Why We Care About<br>Code Structure
+# Code Structure
 
 <p class="text-section-sub">Software engineering is the discipline of building interfaces.</p>
 
@@ -236,58 +255,73 @@ layout: section
 
 # Do we know how to maintain code?
 
-<Callout><strong>Yes.</strong> (Mostly.)</Callout>
+<div class="grid grid-cols-2 items-start gap-8">
 
-- That's what software engineering _is_ as a discipline: building **interfaces**.
-- The boundaries that let humans collaborate on code over years.
-- Types, modules, packages, filesystems, processes, protocols. We didn't always have these.
+<div>
 
+<Callout class="mt-10"><strong>Yes.</strong> (Mostly.)</Callout>
+
+- Software engineering is about building <strong>interfaces</strong>
+
+</div>
+
+<img
+  src="/images/building-blocks.png"
+  alt="Stack of building blocks labeled File systems, Linux, the web, Arrow, DataFusion, and our services and libraries"
+  class="max-h-[390px] ml-auto rounded bg-white"
+/>
+
+</div>
+
+<!--
+- This is not new.
+- Decades of software engineering gave us better and better ways to build on previous work.
+- Types, modules, packages, filesystems, processes, protocols: all interfaces.
+- The point is not "interfaces" as API endpoints only.
+- The point is building blocks on top of building blocks.
+- Good interfaces let later work take earlier work for granted.
+-->
 
 ---
 
 # A Thought Experiment
 
 <p>
-Imagine all we had was <strong class="text-white">assembly</strong> and <strong class="text-white">raw disks</strong>.
-</p>
-
-<p>
-Over decades, we built layers: <strong>programming languages</strong>, <strong>filesystems</strong>, <strong>HTTP</strong>, <strong>RPC</strong>.
-</p>
-
-<p class="text-lead">
-Good interfaces let us take previous work for granted.
+Imagine <strong class="text-white">DataFusion</strong>, but all we had was <strong class="text-white">assembly</strong>.
 </p>
 
 <v-click>
 
-<div class="accent-box">
-  <p class="italic text-2xl">
-    Would AI create these abstraction layers?
-  </p>
-</div>
+<Callout>Could AI make a useful change?</Callout>
 
 </v-click>
 
+<v-click>
 
-<Callout class="text-left">
-<div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-  <span v-click class="!ai-accent">No.</span>
-  <span v-click>Not on its own.</span>
-  <span v-click class="eng-accent">But with your help, it can.</span>
-</div>
-</Callout>
+<p>
+Maybe. But it would have to rediscover everything.
+</p>
+
+<p>
+Good interfaces let us take previous work for granted.
+</p>
+
+</v-click>
+
+<v-click>
+
+<Callout class="text-left">That is the point of the layers.</Callout>
+
+</v-click>
 
 <!--
-1. No, not if the task is simply "build the thing".
-  - If you asked for a spreadsheet, it would happily try to make a spreadsheet
-  directly — maybe all the way down at the wrong level of abstraction.
-2. It knows the ideas, but does not reliably choose durable layers.
-3. With human guidance, it can help a lot.
-   - Your job: make the abstraction question explicit.
-   - Pressure-test the proposed layers.
-   - Choose what is actually load-bearing.
-   - Not "more abstractions"; intentional abstractions.
+- This is a deliberately absurd version of the question.
+- No filesystem: just addresses or blocks.
+- No directories, names, permissions, formats.
+- No Rust types/modules, no Arrow arrays, no SQL plan structures.
+- Yes, AI might grind through some of it.
+- But every change would require rediscovering basic structure.
+- Over decades, we built layers: languages, filesystems, HTTP, RPC.
 - Each layer gave the next layer a smaller surface to understand.
 - The next layer can use the old one without rereading all of it.
 - This is what interfaces do: they let us stand on previous work without reloading all of it.
@@ -340,7 +374,6 @@ Good interfaces let us take previous work for granted.
   <h4 class="lens-remember-accent"><em>Remember Less</em></h4>
   <ul>
     <li>Types</li>
-    <li>Parsers</li>
     <li>Constrained constructors</li>
   </ul>
 </div>
@@ -349,7 +382,7 @@ Good interfaces let us take previous work for granted.
 
 <!--
 - Read less: interfaces, modules, APIs give you local reasoning.
-- Remember less: types, parsers, constructors carry the rules.
+- Remember less: types and constructors carry the rules.
 - Type systems are the obvious example: annoying upfront, fewer surprises later.
 - Good structure moves work earlier so later changes are simpler.
 -->
@@ -358,14 +391,22 @@ Good interfaces let us take previous work for granted.
 
 # Do we need this with AI?
 
-<Prompt>"AI can read everything. Aren't abstractions less important now?"</Prompt>
+<Prompt>AI can read everything. Aren't abstractions less important now?</Prompt>
 
+<v-click>
 <Callout>I think they matter more.</Callout>
 
-- AI lets you get further with a sloppy codebase than humans alone could. For a while.
-- Interfaces tell AI what it can rely on.
-- Leaky boundaries make it rediscover details across the codebase.
-- Better structure helps **both humans and AI** build on previous work.
+Imagine DataFusion as one giant assembly program.
+
+- No types
+- No modules
+- No Rust standard library
+- No query plans
+
+<Callout>Interfaces tell AI what to rely on, and what to preserve.</Callout>
+
+</v-click>
+
 
 ---
 
@@ -401,35 +442,23 @@ layout: section
 
 # What We Bring
 
-<p class="text-lead">Business context and experience.</p>
+<p class="text-lead">The judgment around the code.</p>
 
-- What does the business need?
-- Is this a prototype, or production?
-- Reliability, or velocity?
-- What's the cost of a breaking change?
-- How many pages did we get last month? For what?
+- Prototype or production?
+- Reliability or velocity?
+- Cost of breaking it?
+- What happened last time?
 
-<Callout>That context has to come from us.</Callout>
+<Callout>AI cannot infer the stakes from the diff.</Callout>
 
 <!--
 - Third reason humans are still in the loop.
 - First two: AI does not apply structure by default; context is finite.
 - This one is judgment: does this code matter?
 - Only you know whether to be careful or fast.
+- How many pages did we get last month? For what?
 - Same prompt, different right answer depending on team, codebase, stage.
 -->
-
----
-
-# Turn Friction Into Instructions
-
-<p class="text-lead">Friction means <strong class="text-white">you know something the AI doesn't.</strong></p>
-
-- "Keep this PR reviewable; do not rewrite unrelated files."
-- "Preserve the public API unless we explicitly decide to migrate it."
-- "This is a sensitive prod path; prefer boring code and clear failure modes."
-
-<Callout>Explicit constraints beat implied preferences.</Callout>
 
 ---
 
