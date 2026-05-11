@@ -38,6 +38,8 @@ class: flex flex-col justify-center
 
 ---
 
+# Software Engineering Today
+
 <!--
 
 # AI is Amazing / Terrible
@@ -45,6 +47,7 @@ class: flex flex-col justify-center
 
 <div class="grid grid-cols-2 gap-8 mt-12">
 
+<v-click>
 <div>
 
 <h2 class="momentum-accent">AI Is Amazing</h2>
@@ -55,13 +58,13 @@ class: flex flex-col justify-center
 - Kinda feels like it can do my job?
 
 </div>
+</v-click>
 
 <!--
 ### And Yet. And Yet.
  -->
 
 <v-click>
-
 <div>
 
 <h2 class="ai-accent">AI Slop Is Terrible</h2>
@@ -69,18 +72,14 @@ class: flex flex-col justify-center
 - Huge diffs nobody wants to review
 - Code that works but is full of workarounds
 - Tests that prove less than they claim
-- Maintainers pushing back
+- OSS Maintainers pushing back
 
 </div>
-
 </v-click>
 
 </div>
-
 <v-click>
-
 <Callout class="text-center !mt-16">How can both be true?</Callout>
-
 </v-click>
 
 <!--
@@ -92,14 +91,18 @@ class: flex flex-col justify-center
 
 ---
 
+<!--
 # AI and Good Code
+-->
 
-<Callout>What do you bring to the table when AI writes the code?</Callout>
+<h1><span class="ai-accent">AI</span> and <span class="eng-accent">Good Code</span></h1>
 
 <v-click>
+<Callout>What do <span class="eng-accent">engineers</span> bring to the table when <span class="ai-accent">AI</span> is writing the code?</Callout>
+</v-click>
 
-<Callout>What is good code?</Callout>
-
+<v-click>
+<Callout>What even is <span class="eng-accent">good code</span>?</Callout>
 </v-click>
 
 <!--
@@ -301,7 +304,7 @@ Over decades, we built <strong>programming languages</strong> with type systems 
 
 # Good Code Structure
 
-<div class="grid grid-cols-2 gap-6">
+<div class="grid grid-cols-2">
 
 <div class="accent-box lens-read-card">
   <h3 class="lens-read-accent">Local Reasoning</h3>
@@ -338,7 +341,7 @@ Over decades, we built <strong>programming languages</strong> with type systems 
 
 <Prompt>"AI can read everything. Aren't abstractions less important now?"</Prompt>
 
-<Callout>No. I think they matter more.</Callout>
+<Callout>I think they matter more.</Callout>
 
 - AI lets you get further with a sloppy codebase than humans alone could. For a while.
 - But AI also has a finite context window, and tokens cost money.
@@ -352,19 +355,19 @@ Over decades, we built <strong>programming languages</strong> with type systems 
 
 <div class="p-8 border-2 ai-border ai-bg rounded-lg">
   <h3 class="text-2xl font-bold ai-accent mb-4">Disposable Code</h3>
-  <p class="text-lg text-slate-300 mb-4">Prototypes, internal scripts, vibe-coding, days to weeks of shelf life.</p>
-  <div class="ai-accent font-bold">Let AI run wild.</div>
+  <p class="text-lg text-slate-300 mb-4">Prototypes, internal scripts, days to weeks of shelf life.</p>
+  <div class="ai-accent font-bold">Vibe-code away!</div>
 </div>
 
 <div class="p-8 border-2 eng-border eng-bg rounded-lg">
   <h3 class="text-2xl font-bold eng-accent mb-4">Durable Code</h3>
   <p class="text-lg text-slate-300 mb-4">Product logic, libraries, collaborative repos, open-source, years of shelf life.</p>
-  <div class="eng-accent font-bold">Engineering is required.</div>
+  <div class="eng-accent font-bold"><em>Engineering required.</em></div>
 </div>
 
 </div>
 
-<p class="mt-6 text-slate-400">The rest of this talk is about <strong>durable code</strong>.</p>
+<p class="text-slate-400">The rest of this talk is about <strong>durable code</strong>.</p>
 
 ---
 layout: section
@@ -394,28 +397,6 @@ layout: section
 - This one is judgment: does this code matter?
 - Only you know whether to be careful or fast.
 - Same prompt, different right answer depending on team, codebase, stage.
--->
-
----
-
-# Your Role
-
-- **Ensure it's Good Code.**
-  - PR reviews exist because generated code still needs ownership.
-  - "It passes tests" is not the same as "we can maintain it."
-- **Choose the right abstractions.**
-  - Humans invented languages, filesystems, modules, APIs.
-  - Your codebase needs the same kind of boundary-setting.
-- **Live with the consequences.**
-  - AI will generate 8-argument functions, leaky abstractions, workarounds.
-  - AI won't debug this in three months. You will.
-
-<!--
-- Not "humans must inspect every character."
-- The value is ownership.
-- Decide what matters.
-- Decide where boundaries belong.
-- Decide what future readers/operators should understand locally.
 -->
 
 ---
@@ -489,7 +470,30 @@ layout: section
 
 ---
 
-# Asking for a Feature
+# Think About the Interface
+
+<p class="text-lead">Your job is to make future work need less context.</p>
+
+- What jobs is this code doing?
+- Which concerns should vary independently?
+- What does someone need to know to work with it?
+  - Are they forced to know more than that?
+  - Can the interface make them know less?
+- What should the code enforce for them?
+
+<Callout>Good interfaces reduce required context.</Callout>
+
+<!--
+- This is the non-AI version of the same point.
+- Do not start with "what prompt should I write?"
+- Start with the engineering question: what interface would make the next change smaller?
+- Ask yourself first. Ask AI too, if that helps.
+- The target is not prettier code; it is lower required context for future work.
+-->
+
+---
+
+# Asking for an Outcome
 
 <div class="grid grid-cols-2">
 
@@ -540,7 +544,7 @@ layout: section
 
 ---
 
-# Asking About the Code
+# Finding the Leak
 
 <div class="grid grid-cols-2">
 
@@ -604,7 +608,7 @@ What is a rem?
 
 ---
 
-# Asking About the Design
+# Finding the Boundary
 
 <div class="grid grid-cols-2">
 
@@ -691,45 +695,148 @@ A few frictions:
 
 </div>
 
-<Callout>AI won't clean up or refactor unless you ask.</Callout>
+<Callout>AI won't think about structure unless you ask.</Callout>
 
-Ask it to think about *what* to clean up or restructure. Then ask it to do so.
+Ask it to think about *what* to restructure. Then ask it to do so.
 
 ---
 
-# The 3-Step Work Cycle
+# The Interface We Wanted
 
-<div class="flex items-start gap-4">
+<div class="grid grid-cols-2">
 
-<div class="flex-1">
-<StepRow :number="1" title="Ask About Structure">
-<em>Before implementing, sketch the abstraction layers and code boundaries. Use Local Reasoning and correct-by-construction types as guiding principles.</em>
+<div class="accent-box lens-read-card">
+  <h3 class="lens-read-accent">Writing Slides</h3>
+  <ul>
+    <li>Need: headings, paragraphs, lists</li>
+    <li>Need: emphasis when it matters</li>
+    <li>Should not need: CSS specificity</li>
+  </ul>
+</div>
+
+<div class="accent-box lens-remember-card">
+  <h3 class="lens-remember-accent">Styling the Deck</h3>
+  <ul>
+    <li>Need: rhythm and scale</li>
+    <li>Need: semantic shortcuts</li>
+    <li>Should not need: every slide detail</li>
+  </ul>
+</div>
+
+</div>
+
+<Callout>Text and styling should be able to change separately.</Callout>
+
+<!--
+- This is the example made concrete.
+- CSS is an interface between the writer and the visual system.
+- When writing text, I should not need to know `text-xl`, `text-slate-300`, or specificity.
+- I should be able to use normal slide structure and trust the deck styles.
+- When changing CSS, I should not have to inspect every slide for accidental overrides.
+- That is read less / remember less in a tiny local example.
+-->
+
+---
+
+# Thinking about Interfaces
+
+<div class="grid grid-cols-3 gap-8 items-center">
+
+<div class="col-span-2 flex flex-col gap-7">
+
+<v-click>
+<StepRow :number="1" title="Separate the Concerns">
+<ul>
+<li>What jobs is this code doing?</li>
+<li>Which ones can be independent?</li>
+</ul>
+
 </StepRow>
+</v-click>
+
+<v-click>
+<StepRow :number="2" title="Work Out the Boundaries">
+<ul>
+<li>What should each role rely on?</li>
+<li>What should stay hidden?</li>
+</ul>
+</StepRow>
+</v-click>
+
+<v-click>
+<StepRow :number="3" title="Look for Leakage">
+<ul>
+<li>What does someone have to know to use this component?</li>
+<li>Should that be their concern?</li>
+</ul>
+</StepRow>
+</v-click>
+
 </div>
 
 <v-click>
-<div class="flex items-center self-start mt-12">
-  <svg viewBox="0 0 60 30" class="w-14 h-9 flex-none" stroke="#fb923c" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M 55 15 Q 30 15, 8 18" />
-    <path d="M 8 18 L 15 13" />
-    <path d="M 8 18 L 14 23" />
-  </svg>
-  <div class="font-handwritten text-orange-300" style="font-size: 1.1rem; line-height: 1.1; max-width: 140px;">
-    Perhaps...<br>a Claude Skill?
+<div class="flex justify-center">
+  <div class="font-handwritten text-orange-300" style="font-size: 1.5rem; line-height: 1.1;">
+    You're not alone!<br>Ask AI for help!
   </div>
 </div>
 </v-click>
 
 </div>
 
-<StepRow :number="2" title="Ask for Options">
-<em>The <code>foo_bar_baz</code> function has a lot of arguments, mostly primitives. What are some ways we could refactor that to produce better code structure?</em>
-</StepRow>
+<!--
+- Roles are not just people.
+- They can be layers, modules, modes of change, or responsibilities.
+- In the slide example: writing content and styling the deck should vary independently.
+- Boundaries are not obvious.
+- You often discover them by seeing where knowledge leaks.
+- Leakage can mean remove the detail, or move the boundary.
+- AI can help at each step.
+- Separate concerns: ask what jobs the code is doing.
+- Boundaries: ask for options and tradeoffs.
+- Leakage: ask what knowledge is leaking across the interface.
+- But you still choose the boundary.
+-->
 
-<StepRow :number="3" title="Pick, Then Delegate">
-<em>Let's go with (b), but create a newtype for <code>Baz</code> to encapsulate its behavior.</em>
-</StepRow>
+---
 
+# Your Role
+
+- **Ensure it's Good Code.**
+  - "It passes tests" is not the same as "we can maintain it."
+  - PR reviews exist because generated code still needs ownership.
+- **Choose the right abstractions.**
+  - Humans invented languages, filesystems, modules, APIs.
+  - Your codebase needs the same kind of boundary-setting.
+- **Live with the consequences.**
+  - AI will generate 8-argument functions, leaky abstractions, workarounds.
+  - That AI session won't be debugging this in three months. You will.
+
+<!--
+- This is the answer to the opening question.
+- Not: inspect every character AI writes.
+- The value is ownership.
+- Decide what matters.
+- Decide where boundaries belong.
+- Decide what future readers/operators should understand locally.
+-->
+
+---
+layout: center
+class: text-center
+---
+
+<!--
+# Thank You
+ -->
+
+<div class="text-5xl font-bold text-white">
+
+<p>Thank You!</p>
+
+<v-click><p>... Questions?</p></v-click>
+
+</div>
 
 ---
 
@@ -764,39 +871,3 @@ For each tension:
 - Treat the answer as the start of a design discussion.
 - Follow through: ask for options, choose the tradeoff, then make the code match the decision.
 -->
-
----
-layout: section
----
-
-# Closing
-
----
-
-# While You Work With AI
-
-<div class="accent-box">
-
-- Can I explain why this structure exists?
-- Is the PR small enough to review the important decisions?
-- Can a future change happen locally?
-- Did I give the AI the constraints it needed?
-
-</div>
-
----
-layout: center
-class: text-center
----
-
-<!--
-# Thank You
- -->
-
-<div class="text-5xl font-bold text-white">
-
-<p>Thank You!</p>
-
-<v-click><p>... Questions?</p></v-click>
-
-</div>
