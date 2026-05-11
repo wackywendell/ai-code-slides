@@ -186,20 +186,23 @@ layout: section
 </v-click>
 
 ---
-layout: two-cols
 ---
 
 # What Happened?
 
+<div class="grid items-start gap-8" style="grid-template-columns: minmax(0, 1.45fr) minmax(14rem, 0.75fr);">
+
+<div>
+
 <p class="text-lead">
-AI is great at writing code. It's not great at <em>living with</em> it.
+AI is great at writing code.<br>It's not great at <em>living with</em> it.
 </p>
 
-- We learned to write code this way in school: solve the problem just well enough. Move on.
+- We learned to write code this way in school:<br>solve the problem just well enough. Move on.
 - AI is trained the same way. Make it work. Move on.
-- It doesn't have to maintain the codebase three years later.
+- It doesn't have to maintain the codebase a year later.
 
-::right::
+</div>
 
 <div class="flex flex-col justify-center items-center h-full gap-4">
   <div class="text-center p-6 ai-bg rounded-full border-2 ai-border w-44 h-44 flex flex-col justify-center">
@@ -210,6 +213,8 @@ AI is great at writing code. It's not great at <em>living with</em> it.
     <span class="text-xs uppercase tracking-widest eng-accent">Your Goal</span>
     <span class="text-2xl font-bold text-white mt-1">"Make it Good"</span>
   </div>
+</div>
+
 </div>
 
 <!--
@@ -243,11 +248,15 @@ layout: section
 # A Thought Experiment
 
 <p>
-Imagine all we had was <strong class="text-white">assembly</strong> and <strong class="text-white">raw disks</strong>. Read bytes from memory. Write bytes to disk. That's it.
+Imagine all we had was <strong class="text-white">assembly</strong> and <strong class="text-white">raw disks</strong>.
 </p>
 
 <p>
-Over decades, we built <strong>programming languages</strong> with type systems and modules. And <strong>filesystems</strong> with directories, ownership, and permissions.
+Over decades, we built layers: <strong>programming languages</strong>, <strong>filesystems</strong>, <strong>HTTP</strong>, <strong>RPC</strong>.
+</p>
+
+<p class="text-lead">
+Good interfaces let us take previous work for granted.
 </p>
 
 <v-click>
@@ -279,6 +288,16 @@ Over decades, we built <strong>programming languages</strong> with type systems 
    - Pressure-test the proposed layers.
    - Choose what is actually load-bearing.
    - Not "more abstractions"; intentional abstractions.
+- Each layer gave the next layer a smaller surface to understand.
+- The next layer can use the old one without rereading all of it.
+- This is what interfaces do: they let us stand on previous work without reloading all of it.
+- That is how humans build on old work. It is also how AI can.
+- That happens at every level: structs, modules, packages, services, protocols.
+- "Take for granted" is the point.
+- We take for granted that files have names, directories, and permissions.
+- We take for granted that functions have signatures and types.
+- We take for granted that HTTP gives us methods, headers, and status codes.
+- Good interfaces make that safe.
 -->
 
 
@@ -344,8 +363,9 @@ Over decades, we built <strong>programming languages</strong> with type systems 
 <Callout>I think they matter more.</Callout>
 
 - AI lets you get further with a sloppy codebase than humans alone could. For a while.
-- But AI also has a finite context window, and tokens cost money.
-- Better abstractions help **both humans and AI** do their best work.
+- Interfaces tell AI what it can rely on.
+- Leaky boundaries make it rediscover details across the codebase.
+- Better structure helps **both humans and AI** build on previous work.
 
 ---
 
@@ -375,11 +395,11 @@ layout: section
 
 # Steering AI<br>Toward Durable Code
 
-<p class="text-section-sub">What <strong>you</strong> bring to the table</p>
+<p class="text-section-sub">What <strong>we</strong> bring to the table</p>
 
 ---
 
-# What You Bring
+# What We Bring
 
 <p class="text-lead">Business context and experience.</p>
 
@@ -389,7 +409,7 @@ layout: section
 - What's the cost of a breaking change?
 - How many pages did we get last month? For what?
 
-<Callout>That context has to come from you.</Callout>
+<Callout>That context has to come from us.</Callout>
 
 <!--
 - Third reason humans are still in the loop.
@@ -421,9 +441,32 @@ layout: section
 - Now I just ask the AI. Usually it's faster than asking the author.
 - I do this while writing, while reviewing, while debugging.
 
-<div class="accent-box">
-  <p class="text-lg italic">This is the easy win. AI is a force multiplier for understanding code that already exists.</p>
-</div>
+---
+
+# Think About the Interface
+
+<p class="text-lead">Our job is to make future work, human or AI, need less context.</p>
+
+- What jobs is this code doing?
+- Which concerns should vary independently?
+  - At each level: struct, module, service, workflow?
+- What does someone need to know to work with this code?
+  - Are they forced to know more than that?
+  - Can the interface make them know less?
+- What should the code enforce for them?
+
+<Callout>Good interfaces reduce required context.</Callout>
+
+<!--
+- This is the non-AI version of the same point.
+- Do not start with "what prompt should I write?"
+- Start with the engineering question: what interface would make the next change smaller?
+- Ask yourself first. Ask AI too, if that helps.
+- Interfaces are not only APIs between services.
+- Every struct, module, package, service, and workflow exposes something and hides something.
+- The next human reader and the next AI session both benefit from a smaller surface.
+- The target is not prettier code; it is lower required context for future work.
+-->
 
 ---
 
@@ -431,7 +474,7 @@ layout: section
 
 <p class="text-lead">Prompt the AI to think about Good Code.</p>
 
-<div class="grid grid-cols-2 gap-6">
+<div class="grid grid-cols-2 gap-12">
 
 <div class="accent-box lens-read-card">
   <h3 class="lens-read-accent">Read Less</h3>
@@ -466,29 +509,6 @@ layout: section
 - Remember less: types, parsing, immutability, fewer invalid states.
 - Rust is the familiar version: more thinking upfront, fewer weird states later.
 - The human move: choose the lens that fits the risk and the codebase.
--->
-
----
-
-# Think About the Interface
-
-<p class="text-lead">Your job is to make future work need less context.</p>
-
-- What jobs is this code doing?
-- Which concerns should vary independently?
-- What does someone need to know to work with it?
-  - Are they forced to know more than that?
-  - Can the interface make them know less?
-- What should the code enforce for them?
-
-<Callout>Good interfaces reduce required context.</Callout>
-
-<!--
-- This is the non-AI version of the same point.
-- Do not start with "what prompt should I write?"
-- Start with the engineering question: what interface would make the next change smaller?
-- Ask yourself first. Ask AI too, if that helps.
-- The target is not prettier code; it is lower required context for future work.
 -->
 
 ---
@@ -800,14 +820,14 @@ Ask it to think about *what* to restructure. Then ask it to do so.
 
 ---
 
-# Your Role
+# Our Role
 
 - **Ensure it's Good Code.**
   - "It passes tests" is not the same as "we can maintain it."
-  - PR reviews exist because generated code still needs ownership.
-- **Choose the right abstractions.**
-  - Humans invented languages, filesystems, modules, APIs.
-  - Your codebase needs the same kind of boundary-setting.
+  - PR reviews exist because code still needs ownership.
+- **Choose the boundaries.**
+  - What should the next layer have to know?
+  - What should this layer remember for them?
 - **Live with the consequences.**
   - AI will generate 8-argument functions, leaky abstractions, workarounds.
   - That AI session won't be debugging this in three months. You will.
@@ -818,6 +838,7 @@ Ask it to think about *what* to restructure. Then ask it to do so.
 - The value is ownership.
 - Decide what matters.
 - Decide where boundaries belong.
+- Decide what each layer exposes and hides.
 - Decide what future readers/operators should understand locally.
 -->
 

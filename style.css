@@ -47,15 +47,22 @@ html {
   color: #38bdf8;
 }
 
-.slidev-layout :where(ul > li) {
+.slidev-layout ul > li {
   list-style-type: '→ ';
-  padding: 0.3rem 0;
+  line-height: 1.45;
+  padding: 0.4rem 0;
 }
 
-.slidev-layout :where(ul ul > li) {
+.slidev-layout ul ul > li {
   font-size: 0.85em;
-  padding: 0.15rem 0;
+  line-height: 1.35;
+  padding: 0.06rem 0;
   list-style-type: '· ';
+}
+
+.slidev-layout ul ul {
+  margin-top: 0.05rem;
+  margin-bottom: 0.1rem;
 }
 
 .slidev-layout :where(pre, code) {
