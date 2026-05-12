@@ -99,11 +99,19 @@ html {
  * Specificity 0-2-0 beats the global rules.
  */
 .slidev-layout .claude-quote :where(p, li) {
-  line-height: 1.4;
+  line-height: 1.28;
 }
 
 .slidev-layout .claude-quote p {
   margin: 0.3rem 0;
+}
+
+.slidev-layout .claude-quote ul {
+  margin: 0.15rem 0;
+}
+
+.slidev-layout .claude-quote li {
+  padding: 0.05rem 0;
 }
 
 .slidev-layout .claude-quote :where(p, li):first-child {

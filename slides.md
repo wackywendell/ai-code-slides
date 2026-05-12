@@ -471,7 +471,7 @@ layout: section
 - Cost of breaking it?
 - What happened last time?
 
-<p class="text-sm text-slate-500 mt-6 italic">Friction often means you have context the agent does not.</p>
+<p class="text-slate-500 mt-6 italic">Sidenote: Friction often means you have context the agent does not.</p>
 
 <!--
 - Third reason humans are still in the loop.
@@ -585,29 +585,42 @@ layout: section
 
 <div class="flex flex-col items-center">
   <div class="speaker-label !text-slate-500">What I checked</div>
-  <div class="border border-slate-700 rounded bg-slate-900 p-2 overflow-hidden" style="aspect-ratio: 16/9; width: 240px;">
-    <div class="font-extrabold text-slate-100" style="font-size: 1rem; line-height: 1;">Slide Title</div>
-    <div class="text-slate-300" style="font-size: 0.95rem; line-height: 1.3;">→ Bullet one</div>
-    <div class="text-slate-300" style="font-size: 0.95rem; line-height: 1.3;">→ Bullet two</div>
-    <div class="text-slate-300" style="font-size: 0.95rem; line-height: 1.3;">→ Bullet three</div>
+  <div class="border border-slate-700 rounded bg-slate-900 p-2 overflow-hidden" style="aspect-ratio: 16/9; width: 320px;">
+    <div class="font-extrabold text-slate-100" style="font-size: 1.5rem; line-height: 1;">Slide Title</div>
+    <div class="text-slate-300" style="font-size: 1.3rem; line-height: 1.3;">→ Bullet one</div>
+    <div class="text-slate-300" style="font-size: 1.3rem; line-height: 1.3;">→ Bullet two</div>
+    <div class="text-slate-300" style="font-size: 1.3rem; line-height: 1.3;">→ Bullet three</div>
   </div>
+
+  <p class="text-slate-500"><i>What I wanted:</i> change the scale of <em>all</em> the text.</p>
 </div>
 
 <div class="flex flex-col items-center">
   <div class="speaker-label !text-slate-500">Elsewhere</div>
-  <div class="border border-slate-700 rounded bg-slate-900 p-2 overflow-hidden" style="aspect-ratio: 16/9; width: 240px;">
-    <div class="font-extrabold text-slate-100" style="font-size: 1rem; line-height: 1;">Slide Title</div>
-    <div class="text-slate-500" style="font-size: 0.55rem; line-height: 1;">A subheader smaller than the bullets</div>
-    <div class="text-slate-300" style="font-size: 0.95rem; line-height: 1.3;">→ Body text bigger</div>
-    <div class="text-slate-300" style="font-size: 0.95rem; line-height: 1.3;">→ Than its own subheader</div>
+  <div class="border border-slate-700 rounded bg-slate-900 p-2 overflow-hidden" style="aspect-ratio: 16/9; width: 320px;">
+    <div class="font-extrabold text-slate-100" style="font-size: 1.5rem; line-height: 1;">Slide Title</div>
+    <div class="text-slate-400" style="font-size: 1.05rem; line-height: 1;">A subheader smaller than the bullets</div>
+    <div class="text-slate-300" style="font-size: 1.3rem; line-height: 1.3;">→ Body text bigger</div>
+    <div class="text-slate-300" style="font-size: 1.3rem; line-height: 1.3;">→ Than its own subheader</div>
   </div>
+  <p class="text-slate-500"><i>What I got:</i> manual tweaks on some paragraphs.</p>
 </div>
 
 </div>
+
+<!--
+- This is a reasonable request, and the first result is not obviously absurd.
+- It made the slide I was looking at better.
+- But it solved the local symptom: paragraphs and list items here.
+- What I actually wanted was a deck-level change: all text and spacing should scale together.
+- The mismatch is the point: outcome prompt, wrong structural lever.
+-->
 
 ---
 
-# Finding the Leak
+# Asking the AI
+
+<p class="text-lead !mt-0">Understanding the Structure</p>
 
 <div class="grid grid-cols-2">
 
@@ -637,7 +650,7 @@ Those are UnoCSS utility classes:
 
 `.slidev-layout p` has specificity `(0,1,1)`. `.text-xl` is `(0,1,0)`. The global rule wins; `text-xl` silently loses.
 
-This is a self-inflicted wound from how I wrote the CSS.
+**This is a self-inflicted wound from how I wrote the CSS.**
 
 </Claude>
 
@@ -669,9 +682,16 @@ What is a rem?
 
 </div>
 
+<!--
+- When I'm looking to understand what the structures and boundaries are, the AI can help.
+- It can tell me what the conventions are, and their intended boundaries.
+- Understanding the CSS detail is important to see the leak concretely: global paragraph rules and inline utility classes are fighting.
+- The `rem` question is me following the thread: if the text scale is based on some sort of base `rem` scale, what controls that?
+-->
+
 ---
 
-# Finding the Boundary
+# Finding the Layers
 
 <div class="grid grid-cols-2">
 
@@ -722,9 +742,17 @@ Smaller canvas, everything else is bigger!
 
 </div>
 
+<!--
+- So then, once you start to understand the layers, you can start thinking about - *and asking about* - what to do about it.
+- In this case, we have three layers: the base canvas sizing; the the CSS styling; and the HTML content.
+- If I want to tweak the base size... clearly, changing the canvas size is the way to do it.
+-->
+
 ---
 
-# Asking About the Layers
+# Following Through
+
+<p class="text-lead">Where else are the styling abstractions leaking?</p>
 
 <div class="grid grid-cols-2">
 
@@ -758,9 +786,11 @@ A few frictions:
 
 </div>
 
-<Callout>AI won't think about structure unless you ask.</Callout>
-
-Ask it to think about *what* to restructure. Then ask it to do so.
+<!--
+- The first leak was text sizing.
+- Once we found that, the next question was whether the same boundary was leaking elsewhere.
+- I do not know much about styling, so I asked AI
+-->
 
 ---
 
@@ -772,8 +802,7 @@ Ask it to think about *what* to restructure. Then ask it to do so.
   <h3 class="lens-read-accent">Writing Slides</h3>
   <ul>
     <li>Need: headings, paragraphs, lists</li>
-    <li>Need: emphasis when it matters</li>
-    <li>Should not need: CSS specificity</li>
+    <li>Should not need: font sizes, colors</li>
   </ul>
 </div>
 
@@ -781,14 +810,13 @@ Ask it to think about *what* to restructure. Then ask it to do so.
   <h3 class="lens-remember-accent">Styling the Deck</h3>
   <ul>
     <li>Need: rhythm and scale</li>
-    <li>Need: semantic shortcuts</li>
     <li>Should not need: every slide detail</li>
   </ul>
 </div>
 
 </div>
 
-<Callout>Text and styling should be able to change separately.</Callout>
+<Callout class="!mt-12"><span class="lens-read-accent">Content</span> and <span class="lens-remember-accent">Styles</span> are separate <strong>Layers</strong></Callout>
 
 <!--
 - This is the example made concrete.
@@ -934,4 +962,21 @@ For each tension:
 - It makes the opening move better: more structured, more specific, less vibe-based.
 - Treat the answer as the start of a design discussion.
 - Follow through: ask for options, choose the tradeoff, then make the code match the decision.
+-->
+
+---
+
+# References
+
+- John Ousterhout, _A Philosophy of Software Design_
+  - [Talks at Google](https://www.youtube.com/watch?v=bmSAYlu0NcY)
+  - [Book](https://web.stanford.edu/~ouster/cgi-bin/book.php)
+- Mario Zechner, _Building pi in a World of Slop_
+  - [AI Engineer talk](https://www.youtube.com/watch?v=RjfbvDXpFls)
+
+<!--
+- Keep this sparse.
+- These are the references I would actually point people to after the talk.
+- Ousterhout is the deeper software-design / complexity-management thread.
+- Zechner is the sharper current AI-agent / slow down / human judgment thread.
 -->
