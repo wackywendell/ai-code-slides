@@ -13,11 +13,10 @@ fonts:
   serif: Inter
   mono: Fira Code
 themeConfig:
-  primary: '#38bdf8'
+  primary: "#38bdf8"
 defaults:
   layout: default
 class: flex flex-col justify-center
-
 ---
 
 <div class="text-4xl font-mono font-semibold mb-6 tracking-tight">
@@ -30,10 +29,10 @@ class: flex flex-col justify-center
 <p class="text-2xl text-slate-400">What even is software engineering anymore?</p>
 
 <!--
-- Start with the question honestly.
-- AI is making the boundaries of software engineering feel less obvious.
-- This talk is a reflection, not a prediction.
-- The thread: what engineers still do: judgment, structure, ownership.
+- Opening question: deliberately grandiose
+- Uncertainty around engineering + AI
+- Reflection, not prediction
+- Thread: judgment, structure, ownership
 -->
 
 ---
@@ -52,7 +51,7 @@ class: flex flex-col justify-center
 
 <h2 class="momentum-accent">AI Is Amazing</h2>
 
-- Knows *all* the languages, idioms, libraries
+- Knows _all_ the languages, idioms, libraries
 - Explains unfamiliar code better than I do
 - Generates working code quickly
 - Kinda feels like it can do my job?
@@ -83,10 +82,10 @@ class: flex flex-col justify-center
 </v-click>
 
 <!--
-- Start with the optimistic side and let it breathe.
-- This talk is not a dunk on AI: it really is astonishing.
-- Then reveal the second side: everyone has seen AI-generated mess.
-- The talk lives in the tension between those two observations.
+- Click 1: real capability, real speed
+- Click 2: real slop, real maintenance cost
+- Same tool, different outcomes
+- Transition: how can both be true?
 -->
 
 ---
@@ -101,7 +100,7 @@ class: flex flex-col justify-center
 
 <div>
 
-<Callout>What are <span class="eng-accent">engineers</span> doing when <span class="ai-accent">AI</span> writes code?</Callout>
+<Callout>When <span class="ai-accent">AI</span> is writing all the code...<br><br>What are <span class="eng-accent">engineers</span> doing?</Callout>
 
 </div>
 
@@ -116,14 +115,9 @@ class: flex flex-col justify-center
 </div>
 
 <!--
-- Personal setup: AI is incredibly powerful.
-- It writes, explains, fixes, tests, and keeps momentum going.
-- But sometimes it is powerful and still misguided.
-- It can compile, pass tests, and satisfy the request while missing the shape.
-- The joke lands because there is a real version of the question.
-- If AI can write the code, what is my role?
-- The answer depends on what we mean by software engineering.
-- And on whether "good code" was always about more than making the program run.
+- That's the question I'm looking at today
+- _Meme_
+- What is it we do here?
 -->
 
 ---
@@ -131,8 +125,14 @@ class: flex flex-col justify-center
 # Table of Contents
 
 - Fragile code
-- Code structure and why we care
-- Steering AI toward durable code
+- Code Structure
+- Steering AI
+
+<!--
+- Challenges that come up with AI
+- What we know about software engineering
+- How we do something about it
+-->
 
 ---
 layout: section
@@ -198,6 +198,16 @@ layout: section
 
 </v-click>
 
+<!--
+- General story, many of us may have been through at some point
+  - if you haven't, try it!
+- Day 1: speed, momentum, working demo
+- Day 2: edge cases, context debt; AI pushes through
+- Day 3: Start sticking in the mud: huge diff, tests you don't trust, no review path
+
+- Transition: This started feeling good; where did it go off the rails?
+-->
+
 ---
 
 # What Happened?
@@ -224,23 +234,26 @@ layout: section
 <div class="flex flex-col justify-center items-center h-full gap-4">
   <div class="text-center p-6 ai-bg rounded-full border-2 ai-border w-44 h-44 flex flex-col justify-center">
     <span class="text-xs uppercase tracking-widest ai-accent">AI Goal</span>
-    <span class="text-2xl font-bold text-white mt-1">"Make it Work"</span>
+    <span class="text-2xl font-bold text-white mt-1">Make it Work</span>
   </div>
   <div class="text-center p-6 eng-bg rounded-full border-2 eng-border w-44 h-44 flex flex-col justify-center">
     <span class="text-xs uppercase tracking-widest eng-accent">Your Goal</span>
-    <span class="text-2xl font-bold text-white mt-1">"Make it Good"</span>
+    <span class="text-2xl font-bold text-white mt-1">Make it Good</span>
   </div>
 </div>
 
 </div>
 
 <!--
-- "In school" is broad on purpose: CS assignments, interviews, weekend projects.
-- My version: physics scripts, get the result, throw it away.
-- A lot of training data has that disposable-code shape.
-- First say the disposable-code version: maintenance is a problem for later.
-- Then click: later means you.
-- Land the beat: AI does not maintain this in a year. **You do**.
+- AI writes code well, but doesn't live with it
+- This is probably familiar: Disposable-code shape
+  - school, scripts, weekend projects, LeetCode
+- My version: physics scripts, get result, throw away
+- Training data bias: make it work, move on
+- First beat: The challenge here is maintenance
+  - Come back to it, and work with it
+- Click: later means you
+  - We are going to have to build on it, extend it, debug it
 -->
 
 ---
@@ -249,7 +262,14 @@ layout: section
 
 # Code Structure
 
-<p class="text-section-sub">Software engineering is the discipline of building interfaces.</p>
+<p class="text-section-sub">Making Code Livable</p>
+
+<!--
+- That was the problem as I understand it
+- Code we could not confidently maintain.
+- So the next question is: what makes code livable?
+- My answer: structure, especially interfaces.
+-->
 
 ---
 
@@ -274,12 +294,15 @@ layout: section
 </div>
 
 <!--
-- This is not new.
-- Decades of software engineering gave us better and better ways to build on previous work.
-- Types, modules, packages, filesystems, processes, protocols: all interfaces.
-- The point is not "interfaces" as API endpoints only.
-- The point is building blocks on top of building blocks.
-- Good interfaces let later work take earlier work for granted.
+- Not new
+- Decades of software engineering
+- Lesson we keep learning in new ways: how to build good interfaces
+- Types, modules, packages, filesystems, processes, protocols
+- "Interface" broader than service API
+- Building blocks on building blocks
+- Later work takes earlier work for granted
+  - When you're working with Datafusion, how much are you thinking about which
+  addresses on the hard drive you need to write to? Or which sockets to open?
 -->
 
 ---
@@ -303,7 +326,7 @@ Imagine <strong class="text-white">DataFusion</strong>, but all we had was <stro
 <v-click>
 
 <p>
-Maybe. But it would have to rediscover everything.
+Maybe. But it would have to rediscover everything, and probably make a mess.
 </p>
 
 <p>
@@ -337,42 +360,32 @@ Good interfaces let us take previous work for granted.
 </div>
 
 <!--
-- This is a deliberately absurd version of the question.
-- No filesystem: just addresses or blocks.
-- No directories, names, permissions, formats.
-- No Rust types/modules, no Arrow arrays, no SQL plan structures.
-- Yes, AI might grind through some of it.
-- But every change would require rediscovering basic structure.
-- Over decades, we built layers: languages, filesystems, HTTP, RPC.
-- Each layer gave the next layer a smaller surface to understand.
-- The next layer can use the old one without rereading all of it.
-- This is what interfaces do: they let us stand on previous work without reloading all of it.
-- That is how humans build on old work. It is also how AI can.
-- That happens at every level: structs, modules, packages, services, protocols.
-- "Take for granted" is the point.
-- We take for granted that files have names, directories, and permissions.
-- We take for granted that functions have signatures and types.
-- We take for granted that HTTP gives us methods, headers, and status codes.
-- Good interfaces make that safe.
+- Deliberately absurd
+- No filesystem: addresses / blocks only
+- No directories, names, permissions, formats
+- No Rust types/modules, Arrow arrays, SQL plans
+- AI might grind; trust would be hard
+- Every change: rediscover structure
+- Layers: languages, filesystems, HTTP, RPC
+- Smaller surface for next layer
+- Interfaces let humans and AI take prior work for granted
+- Every level: structs, modules, packages, services, protocols
+- Examples: files, function signatures, HTTP methods/status
 -->
-
 
 ---
 
+# Why do Interfaces Matter?
 
-# What Is Good Code?
+<p class="text-lead">Good interfaces are <strong>maintainable</strong> and <strong>extendable</strong>.</p>
 
-<p class="text-lead">Good code is <strong>maintainable</strong> and <strong>extendable</strong>.</p>
-
-<v-click><Callout>Good code reduces how much you have to <strong>read</strong> and <strong>remember</strong>.</Callout></v-click>
+<v-click><Callout>Good interfaces reduce how much you have to <strong>read</strong> and <strong>remember</strong>.</Callout></v-click>
 
 <!--
-- There are books and books about 'Good Code' out there, lots of ideas there
-- But for the purposes of this talk, two properties matter.
-- Read less: reduce the context needed for a change.
-- Remember less: put more of the rules into the structure.
-- Next slide makes that concrete.
-- AI makes the question sharper, not obsolete.
+- Many definitions of "good code" or "good interfaces"
+- For this talk: two useful properties
+- Read less: reduce context needed for change
+- Remember less: rules live in structure
 -->
 
 ---
@@ -403,10 +416,11 @@ Good interfaces let us take previous work for granted.
 </div>
 
 <!--
-- Read less: interfaces, modules, APIs give you local reasoning.
-- Remember less: types and constructors carry the rules.
-- Type systems are the obvious example: annoying upfront, fewer surprises later.
-- Good structure moves work earlier so later changes are simpler.
+- Read less: interfaces, modules, APIs
+- Remember less: types, constructors, invariants
+- Type systems: more upfront thought, fewer surprises
+- Structure moves work earlier
+- Later changes get simpler
 -->
 
 ---
@@ -425,10 +439,23 @@ Imagine DataFusion as one giant assembly program.
 - No Rust standard library
 - No query plans
 
-<Callout>Interfaces tell AI what to rely on, and what to preserve.</Callout>
-
 </v-click>
 
+<Callout>
+<v-switch at="1">
+<template #1>Interfaces tell us what to rely on, and what to preserve.</template>
+<template #2>Interfaces tell <span class="ai-accent">AI</span> what to rely on, and what to preserve.</template>
+</v-switch>
+</Callout>
+
+<!--
+- Tempting objection: AI can read everything
+- Context is not the same as structure
+- Giant assembly DataFusion: possible, not trustworthy
+- Interfaces tell AI what is stable
+- Preserve boundaries, do not rediscover them
+- Abstractions matter more when changes are faster
+-->
 
 ---
 
@@ -452,6 +479,12 @@ Imagine DataFusion as one giant assembly program.
 
 <p class="text-slate-400">The rest of this talk is about <strong>durable code</strong>.</p>
 
+<!--
+- Disposable: don't need to worry about building on top
+- Different standards for different consequences
+- Rest of talk: durable code
+-->
+
 ---
 layout: section
 ---
@@ -460,33 +493,39 @@ layout: section
 
 <p class="text-section-sub">What <strong>we</strong> bring to the table</p>
 
+<!--
+- Let's talk about what we can do about it
+- What's our role in this
+-->
+
 ---
 
-# You Have Context
-
-<p class="text-lead">Tell the agent what kind of code this is.</p>
+# We Have Context
 
 - Prototype or production?
 - Reliability or velocity?
 - Cost of breaking it?
 - What happened last time?
 
-<p class="text-slate-500 mt-6 italic">Sidenote: Friction often means you have context the agent does not.</p>
+<p><i>Friction often means you have context the agent does not.</i></p>
+
+<p>Tell the agent what kind of code this is - what the expectations are.</p>
+
 
 <!--
-- Third reason humans are still in the loop.
-- First two: AI does not apply structure by default; context is finite.
-- This one is judgment: does this code matter?
-- Only you know whether to be careful or fast.
-- How many pages did we get last month? For what?
-- Same prompt, different right answer depending on team, codebase, stage.
+- Human role: context + stakes
+- Prototype vs production changes the right answer
+- Reliability vs velocity
+- Cost of breaking it
+- Team memory: pages, incidents, prior pain
+- Same prompt, different codebase, different answer
 -->
 
 ---
 
 # Ask the AI About Code
 
-<p class="text-lead">I use AI when I would otherwise interrupt someone.</p>
+<p class="text-lead">Understand the structure.</p>
 
 - What is this doing?
 - What problem is it solving?
@@ -496,38 +535,40 @@ layout: section
   - Can we structure it better? Options?
 
 <!--
-- This is one of the most practical changes in my day-to-day workflow.
-- In reviews, I used to ask the author "what is this doing?" or "why do we need this?"
-- Now I often ask AI first.
-- Usually that is faster, and it keeps the review from starting with a basic context handoff.
-- But the answer is still something to review, not something to accept.
-- This is where the talk starts turning the context problem into a workflow.
+- Work with AI to get more context
+- Practical daily workflow
+- Review/debug moment: "wait, what is this?"
+- Ask AI before interrupting author
+- Faster context handoff
+- Still review the answer
+- Bridge: context problem -> workflow
 -->
 
 ---
 
 # Think About the Interface
 
-<p class="text-lead">Now decide what future work should need to know.</p>
+<p class="text-lead">What are the layers?</p>
 
-- What concerns are mixed together?
+- What concerns can be separate?
   - Struct, module, service, workflow
 - What is leaking across the boundary?
   - Does the caller really need that?
 - What should the code enforce?
   - Types, constructors, validation, ownership
 
-<Callout>Make the next change need less context.</Callout>
+Ask yourself
+
+Ask the AI
+
+<!-- <Callout>Make the next change need less context.</Callout> -->
 
 <!--
-- This is the non-AI version of the same point.
-- Do not start with "what prompt should I write?"
-- Start with the engineering question: what interface would make the next change smaller?
-- Ask yourself first. Ask AI too, if that helps.
-- Interfaces are not only APIs between services.
-- Every struct, module, package, service, and workflow exposes something and hides something.
-- The next human reader and the next AI session both benefit from a smaller surface.
-- The target is not prettier code; it is lower required context for future work.
+- Interfaces at every level
+- Structs, modules, packages, services, workflows
+- Exposes something, hides something
+- Smaller surface for human + next AI session
+- Target: lower required context
 -->
 
 ---
@@ -543,15 +584,13 @@ layout: section
 - Reviewing
   - What structural tensions do you see?
 
-<p class="text-sm text-slate-500 mt-4 italic">Examples: Local Reasoning, Parse Don't Validate, Functional Core / Imperative Shell</p>
+<p class="text-sm text-slate-500 mt-4 italic">Examples: Local Reasoning, Parse Don't Validate, Functional Core / Imperative Shell, Correct by Construction</p>
 
 <!--
-- I do this before implementation, not only after.
-- Ask it to plan with a lens: local reasoning, invalid states, functional core.
-- Then keep that lens in the loop while it builds.
-- In review, I will ask: based on the code-structure lens, what tensions do you see?
-- The useful part is not that AI knows the words.
-- The useful part is making the structural target explicit.
+- Once you understand, you can guide
+- Before implementation, not only after
+- Planning lens: local reasoning, invalid states, functional core
+- Here's some terms, the AI knows them
 -->
 
 ---
@@ -571,10 +610,15 @@ layout: section
 <div class="speaker-label ai-accent">Claude</div>
 
 ```css
-/* style.css */
-.slidev-layout    { font-size: 1.35rem }
-.slidev-layout p  { font-size: 1.4rem }
-.slidev-layout li { font-size: 1.4rem }
+.slidev-layout {
+  font-size: 1.35rem;
+}
+.slidev-layout p {
+  font-size: 1.4rem;
+}
+.slidev-layout li {
+  font-size: 1.4rem;
+}
 ```
 
 </div>
@@ -585,7 +629,7 @@ layout: section
 
 <div class="flex flex-col items-center">
   <div class="speaker-label !text-slate-500">What I checked</div>
-  <div class="border border-slate-700 rounded bg-slate-900 p-2 overflow-hidden" style="aspect-ratio: 16/9; width: 320px;">
+  <div class="border border-slate-700 rounded bg-slate-900 p-2 overflow-hidden" style="aspect-ratio: 16/9; width: 300px;">
     <div class="font-extrabold text-slate-100" style="font-size: 1.5rem; line-height: 1;">Slide Title</div>
     <div class="text-slate-300" style="font-size: 1.3rem; line-height: 1.3;">→ Bullet one</div>
     <div class="text-slate-300" style="font-size: 1.3rem; line-height: 1.3;">→ Bullet two</div>
@@ -597,7 +641,7 @@ layout: section
 
 <div class="flex flex-col items-center">
   <div class="speaker-label !text-slate-500">Elsewhere</div>
-  <div class="border border-slate-700 rounded bg-slate-900 p-2 overflow-hidden" style="aspect-ratio: 16/9; width: 320px;">
+  <div class="border border-slate-700 rounded bg-slate-900 p-2 overflow-hidden" style="aspect-ratio: 16/9; width: 300px;">
     <div class="font-extrabold text-slate-100" style="font-size: 1.5rem; line-height: 1;">Slide Title</div>
     <div class="text-slate-400" style="font-size: 1.05rem; line-height: 1;">A subheader smaller than the bullets</div>
     <div class="text-slate-300" style="font-size: 1.3rem; line-height: 1.3;">→ Body text bigger</div>
@@ -609,11 +653,14 @@ layout: section
 </div>
 
 <!--
-- This is a reasonable request, and the first result is not obviously absurd.
-- It made the slide I was looking at better.
-- But it solved the local symptom: paragraphs and list items here.
-- What I actually wanted was a deck-level change: all text and spacing should scale together.
-- The mismatch is the point: outcome prompt, wrong structural lever.
+- Let's walk through an example - one from making these slides
+- Reasonable request
+- First result: not obviously absurd
+- <i>What I wanted:</i> change the scale of <em>all</em> the text.
+- <i>What I got:</i> manual tweaks on some paragraphs.
+- Local symptom: paragraphs / list items
+- Actual goal: deck-level text + spacing scale
+- Mismatch: outcome prompt, wrong structural lever
 -->
 
 ---
@@ -683,10 +730,12 @@ What is a rem?
 </div>
 
 <!--
-- When I'm looking to understand what the structures and boundaries are, the AI can help.
-- It can tell me what the conventions are, and their intended boundaries.
-- Understanding the CSS detail is important to see the leak concretely: global paragraph rules and inline utility classes are fighting.
-- The `rem` question is me following the thread: if the text scale is based on some sort of base `rem` scale, what controls that?
+- I don't know much about CSS and HTML, much less this framework
+  - So I asked it
+  - Helped me understand structures + boundaries
+- Concrete leak: global paragraph rules vs inline utilities
+- `rem` question: follow the thread
+- If rem controls scale, what controls rem?
 -->
 
 ---
@@ -743,9 +792,13 @@ Smaller canvas, everything else is bigger!
 </div>
 
 <!--
-- So then, once you start to understand the layers, you can start thinking about - *and asking about* - what to do about it.
-- In this case, we have three layers: the base canvas sizing; the the CSS styling; and the HTML content.
-- If I want to tweak the base size... clearly, changing the canvas size is the way to do it.
+- Once you start to understand, ask what to do
+  - Discuss, think about it, don't take the easy answer
+- Three layers here
+- Canvas sizing
+- CSS styling
+- HTML content
+- Base size -> canvas lever
 -->
 
 ---
@@ -789,7 +842,8 @@ A few frictions:
 <!--
 - The first leak was text sizing.
 - Once we found that, the next question was whether the same boundary was leaking elsewhere.
-- I do not know much about styling, so I asked AI
+- I do not know much about styling
+- Ask AI to widen the search
 -->
 
 ---
@@ -819,12 +873,13 @@ A few frictions:
 <Callout class="!mt-12"><span class="lens-read-accent">Content</span> and <span class="lens-remember-accent">Styles</span> are separate <strong>Layers</strong></Callout>
 
 <!--
-- This is the example made concrete.
-- CSS is an interface between the writer and the visual system.
-- When writing text, I should not need to know `text-xl`, `text-slate-300`, or specificity.
-- I should be able to use normal slide structure and trust the deck styles.
-- When changing CSS, I should not have to inspect every slide for accidental overrides.
-- That is read less / remember less in a tiny local example.
+- Example made concrete
+- CSS as interface: writer <-> visual system
+- Writing text: no font sizes, colors, specificity
+- Use normal slide structure
+- Trust deck styles
+- Changing CSS: no need to inspect every slide
+- Read less / remember less, local example
 -->
 
 ---
@@ -876,17 +931,16 @@ A few frictions:
 </div>
 
 <!--
-- Roles are not just people.
-- They can be layers, modules, modes of change, or responsibilities.
-- In the slide example: writing content and styling the deck should vary independently.
-- Boundaries are not obvious.
-- You often discover them by seeing where knowledge leaks.
-- Leakage can mean remove the detail, or move the boundary.
-- AI can help at each step.
-- Separate concerns: ask what jobs the code is doing.
-- Boundaries: ask for options and tradeoffs.
-- Leakage: ask what knowledge is leaking across the interface.
-- But you still choose the boundary.
+- Roles: people, layers, modules, responsibilities
+- Slide example: content vs styling
+- Boundaries are not obvious
+- Discover them through leakage
+- Leakage options: hide detail, move boundary
+- AI help at each step
+- Separate concerns: jobs in the code
+- Boundaries: options + tradeoffs
+- Leakage: knowledge crossing interface
+- Human still chooses boundary
 -->
 
 ---
@@ -904,13 +958,13 @@ A few frictions:
   - That AI session won't be debugging this in three months. You will.
 
 <!--
-- This is the answer to the opening question.
-- Not: inspect every character AI writes.
-- The value is ownership.
-- Decide what matters.
-- Decide where boundaries belong.
-- Decide what each layer exposes and hides.
-- Decide what future readers/operators should understand locally.
+- Answer to opening question
+- Not: inspect every generated character
+- Value: ownership
+- Decide what matters
+- Decide where boundaries belong
+- Decide what each layer exposes / hides
+- Decide what future readers/operators know locally
 -->
 
 ---
@@ -932,6 +986,23 @@ class: text-center
 
 ---
 
+# References
+
+- John Ousterhout, _A Philosophy of Software Design_
+  - [Talks at Google](https://www.youtube.com/watch?v=bmSAYlu0NcY)
+  - [Book](https://web.stanford.edu/~ouster/cgi-bin/book.php)
+- Mario Zechner, _Building pi in a World of Slop_
+  - [AI Engineer talk](https://www.youtube.com/watch?v=RjfbvDXpFls)
+
+<!--
+- Keep this sparse.
+- References I would actually point people to
+- Ousterhout: design / complexity management
+- Zechner: AI agents / slow down / human judgment
+-->
+
+---
+
 # I Have a Claude Skill for This
 
 ```markdown
@@ -944,39 +1015,27 @@ Goal: code that is easier to read, harder to misuse,
 and more resilient to change.
 
 Apply only the principles that matter:
+
 - Make Invalid States Unrepresentable
 - Parse, Don't Validate
 - Functional Core, Imperative Shell
 - Co-locate Decisions with Data
 
 For each tension:
+
 - What's happening?
 - Why does it matter?
 - Is the fix obvious, tradeoff-heavy, or constrained?
 ```
 
-<Callout>It gives the AI a job, a vocabulary, and a shape for the answer.</Callout>
+<Callout>It gives the AI a goal and a vocabulary</Callout>
 
 <!--
-- The skill doesn't make the AI "correct" by default.
-- It makes the opening move better: more structured, more specific, less vibe-based.
-- Treat the answer as the start of a design discussion.
-- Follow through: ask for options, choose the tradeoff, then make the code match the decision.
--->
-
----
-
-# References
-
-- John Ousterhout, _A Philosophy of Software Design_
-  - [Talks at Google](https://www.youtube.com/watch?v=bmSAYlu0NcY)
-  - [Book](https://web.stanford.edu/~ouster/cgi-bin/book.php)
-- Mario Zechner, _Building pi in a World of Slop_
-  - [AI Engineer talk](https://www.youtube.com/watch?v=RjfbvDXpFls)
-
-<!--
-- Keep this sparse.
-- These are the references I would actually point people to after the talk.
-- Ousterhout is the deeper software-design / complexity-management thread.
-- Zechner is the sharper current AI-agent / slow down / human judgment thread.
+- Skill does not make AI correct
+- Better opening move
+- More structured, more specific, less vibe-based
+- Start of design discussion
+- Ask options
+- Choose tradeoff
+- Make code match decision
 -->
