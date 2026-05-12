@@ -266,7 +266,7 @@ layout: section
 </div>
 
 <img
-  src="/images/building-blocks.png"
+  src="/images/building-blocks.webp"
   alt="Stack of building blocks labeled File systems, Linux, the web, Arrow, DataFusion, and our services and libraries"
   class="max-h-[390px] ml-auto rounded bg-white"
 />
@@ -285,6 +285,10 @@ layout: section
 ---
 
 # A Thought Experiment
+
+<div class="grid grid-cols-[minmax(0,1.1fr)_minmax(16rem,0.9fr)] items-center gap-8 min-h-[390px]">
+
+<div>
 
 <p>
 Imagine <strong class="text-white">DataFusion</strong>, but all we had was <strong class="text-white">assembly</strong>.
@@ -308,11 +312,29 @@ Good interfaces let us take previous work for granted.
 
 </v-click>
 
-<v-click>
+<v-click at="3">
 
 <Callout class="text-left">That is the point of the layers.</Callout>
 
 </v-click>
+
+</div>
+
+<div class="flex items-center justify-center min-h-[330px]">
+
+<v-click at="3">
+
+<img
+  src="/images/building-blocks.webp"
+  alt="Stack of building blocks labeled File systems, Linux, the web, Arrow, DataFusion, and our services and libraries"
+  class="max-h-[310px] rounded bg-white"
+/>
+
+</v-click>
+
+</div>
+
+</div>
 
 <!--
 - This is a deliberately absurd version of the question.
