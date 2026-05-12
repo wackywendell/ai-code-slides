@@ -462,16 +462,16 @@ layout: section
 
 ---
 
-# What We Bring
+# You Have Context
 
-<p class="text-lead">The judgment around the code.</p>
+<p class="text-lead">Tell the agent what kind of code this is.</p>
 
 - Prototype or production?
 - Reliability or velocity?
 - Cost of breaking it?
 - What happened last time?
 
-<Callout>AI cannot infer the stakes from the diff.</Callout>
+<p class="text-sm text-slate-500 mt-6 italic">Friction often means you have context the agent does not.</p>
 
 <!--
 - Third reason humans are still in the loop.
@@ -486,27 +486,38 @@ layout: section
 
 # Ask the AI About Code
 
-<p class="text-lead">AI is very good at <strong class="text-white">understanding and explaining</strong> code. I lean on this constantly.</p>
+<p class="text-lead">I use AI when I would otherwise interrupt someone.</p>
 
-- I used to ask <em>"what is this doing? Why do we need this?"</em> in code reviews.
-- Now I just ask the AI. Usually it's faster than asking the author.
-- I do this while writing, while reviewing, while debugging.
+- What is this doing?
+- What problem is it solving?
+- Why would the author do it that way?
+- What breaks if this changes?
+- This function has a complex signature. What boundary is it crossing?
+  - Can we structure it better? Options?
+
+<!--
+- This is one of the most practical changes in my day-to-day workflow.
+- In reviews, I used to ask the author "what is this doing?" or "why do we need this?"
+- Now I often ask AI first.
+- Usually that is faster, and it keeps the review from starting with a basic context handoff.
+- But the answer is still something to review, not something to accept.
+- This is where the talk starts turning the context problem into a workflow.
+-->
 
 ---
 
 # Think About the Interface
 
-<p class="text-lead">Our job is to make future work, human or AI, need less context.</p>
+<p class="text-lead">Now decide what future work should need to know.</p>
 
-- What jobs is this code doing?
-- Which concerns should vary independently?
-  - At each level: struct, module, service, workflow?
-- What does someone need to know to work with this code?
-  - Are they forced to know more than that?
-  - Can the interface make them know less?
-- What should the code enforce for them?
+- What concerns are mixed together?
+  - Struct, module, service, workflow
+- What is leaking across the boundary?
+  - Does the caller really need that?
+- What should the code enforce?
+  - Types, constructors, validation, ownership
 
-<Callout>Good interfaces reduce required context.</Callout>
+<Callout>Make the next change need less context.</Callout>
 
 <!--
 - This is the non-AI version of the same point.
@@ -523,43 +534,24 @@ layout: section
 
 # Guide the Structure
 
-<p class="text-lead">Prompt the AI to think about Good Code.</p>
+<p class="text-lead">Give the agent a design lens before it commits to a shape.</p>
 
-<div class="grid grid-cols-2 gap-12">
+- Planning
+  - What structure would make this easy to change?
+- Building
+  - Keep the boundary clear while implementing.
+- Reviewing
+  - What structural tensions do you see?
 
-<div class="accent-box lens-read-card">
-  <h3 class="lens-read-accent">Read Less</h3>
-  <ul>
-    <li>Local Reasoning</li>
-    <li>Functional Core, Imperative Shell</li>
-    <li>Co-locate Decisions with Data</li>
-  </ul>
-</div>
-
-<div class="accent-box lens-remember-card">
-  <h3 class="lens-remember-accent">Remember Less</h3>
-  <ul>
-    <li>Make Invalid States Unrepresentable</li>
-    <li>Parse, Don't Validate</li>
-    <li>Immutability by Default</li>
-  </ul>
-</div>
-
-</div>
-
-<p class="text-sm text-slate-500 mt-4 italic">The strange part: AI can explain these principles fluently, then ignore them in the next diff.</p>
+<p class="text-sm text-slate-500 mt-4 italic">Examples: Local Reasoning, Parse Don't Validate, Functional Core / Imperative Shell</p>
 
 <!--
-- This is the paradox: knowledge is not habit.
-- AI really has seen these principles everywhere: books, blogs, talks, code reviews.
-- It can explain them, give examples, and often apply them well when asked.
-- But the default prompt is usually "make this work", not "make this structurally sound".
-- This is what I actually do: give the agent a named design lens.
-- Not every principle applies every time.
-- Read less: boundaries, ownership, separating core logic from effects.
-- Remember less: types, parsing, immutability, fewer invalid states.
-- Rust is the familiar version: more thinking upfront, fewer weird states later.
-- The human move: choose the lens that fits the risk and the codebase.
+- I do this before implementation, not only after.
+- Ask it to plan with a lens: local reasoning, invalid states, functional core.
+- Then keep that lens in the loop while it builds.
+- In review, I will ask: based on the code-structure lens, what tensions do you see?
+- The useful part is not that AI knows the words.
+- The useful part is making the structural target explicit.
 -->
 
 ---
