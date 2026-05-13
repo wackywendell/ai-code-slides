@@ -432,57 +432,70 @@ Good interfaces let us take previous work for granted.
 <v-click>
 <Callout>I think they matter more.</Callout>
 
-Imagine DataFusion as one giant assembly program.
+AI can scan the code. It still has to preserve the behavior.
 
-- No types
-- No modules
-- No Rust standard library
-- No query plans
+- Hidden rules become hidden bugs
+- Edge cases compound across layers
+- Small changes get harder to trust
 
 </v-click>
 
-<Callout>
-<v-switch at="1">
-<template #1>Interfaces tell us what to rely on, and what to preserve.</template>
-<template #2>Interfaces tell <span class="ai-accent">AI</span> what to rely on, and what to preserve.</template>
-</v-switch>
-</Callout>
+
+<v-click>
+<Callout>That is fragile code.</Callout>
+</v-click>
+
+
 
 <!--
 - Tempting objection: AI can read everything
-- Context is not the same as structure
-- Giant assembly DataFusion: possible, not trustworthy
-- Interfaces tell AI what is stable
-- Preserve boundaries, do not rediscover them
+- Not asking people to love types for their own sake
+- External problem: behavior changes accidentally
+- Hidden rules become hidden bugs
+- Edge cases compound across layers
+- Good interfaces localize the rules
+- Invariants make some bad behavior impossible
 - Abstractions matter more when changes are faster
+- Fragile code: small changes are hard to trust
 -->
 
 ---
 
-# The Scope of the Argument
+# When Does Fragility Matter?
 
 <div class="grid grid-cols-2 gap-8 mt-4">
 
 <div class="p-8 border-2 ai-border ai-bg rounded-lg">
   <h3 class="text-2xl font-bold ai-accent mb-4">Disposable Code</h3>
-  <p class="text-lg text-slate-300 mb-4">Prototypes, internal scripts, days to weeks of shelf life.</p>
+  <ul>
+    <li>Short-lived</li>
+    <li>Low blast radius</li>
+    <li>Easy to replace</li>
+  </ul>
   <div class="ai-accent font-bold">Vibe-code away!</div>
 </div>
 
 <div class="p-8 border-2 eng-border eng-bg rounded-lg">
   <h3 class="text-2xl font-bold eng-accent mb-4">Durable Code</h3>
-  <p class="text-lg text-slate-300 mb-4">Product logic, libraries, collaborative repos, open-source, years of shelf life.</p>
+  <ul>
+    <li>Changed repeatedly</li>
+    <li>Built on by others</li>
+    <li>Hard to replace</li>
+  </ul>
   <div class="eng-accent font-bold"><em>Engineering required.</em></div>
 </div>
 
 </div>
 
-<p class="text-slate-400">The rest of this talk is about <strong>durable code</strong>.</p>
+<p class="text-slate-400">The rest of this talk is about code we expect to <strong>live with</strong>.</p>
 
 <!--
-- Disposable: don't need to worry about building on top
-- Different standards for different consequences
-- Rest of talk: durable code
+- Fragility is not always worth optimizing away
+- Disposable: short life, low blast radius, replacement is cheap
+  - Examples: prototypes, internal scripts
+- Durable: repeated change, other people build on it, replacement is expensive
+  - Examples: product logic, libraries, collaborative repos, open-source
+- Rest of talk: code we expect to live with
 -->
 
 ---
@@ -575,22 +588,46 @@ Ask the AI
 
 # Guide the Structure
 
-<p class="text-lead">Give the agent a design lens before it commits to a shape.</p>
+<div class="grid grid-cols-2 gap-8">
+
+<div>
+
+### Work Out The Shape
 
 - Planning
-  - What structure would make this easy to change?
+  - Where should the interface be?
 - Building
-  - Keep the boundary clear while implementing.
+  - Keep callers behind that interface.
 - Reviewing
   - What structural tensions do you see?
 
-<p class="text-sm text-slate-500 mt-4 italic">Examples: Local Reasoning, Parse Don't Validate, Functional Core / Imperative Shell, Correct by Construction</p>
+<p class="text-sm text-slate-500 mt-6 italic">Your job is to choose the structure.</p>
+
+</div>
+
+<div>
+
+### Useful Prompts
+
+- Local Reasoning
+- Parse, Don't Validate
+- Functional Core / Imperative Shell
+- Correct by Construction
+
+<p class="text-sm text-slate-500 mt-6 italic">AI can help explore the options.</p>
+
+</div>
+
+</div>
 
 <!--
 - Once you understand, you can guide
+- Use AI to explore possible structures
+- Ask for options and tradeoffs
+- Engineer role: choose the structure
+- AI role: help plan and implement inside it
 - Before implementation, not only after
-- Planning lens: local reasoning, invalid states, functional core
-- Here's some terms, the AI knows them
+- Named principles: words the AI understands
 -->
 
 ---
@@ -923,7 +960,7 @@ A few frictions:
 <v-click>
 <div class="flex justify-center">
   <div class="font-handwritten text-orange-300" style="font-size: 1.5rem; line-height: 1.1;">
-    You're not alone!<br>Ask AI for help!
+    Ask AI for options!<br>Some will even be good.
   </div>
 </div>
 </v-click>
@@ -941,30 +978,52 @@ A few frictions:
 - Boundaries: options + tradeoffs
 - Leakage: knowledge crossing interface
 - Human still chooses boundary
+- AI is useful for candidate boundaries
+- Mixed-quality options
+- Engineer chooses
 -->
 
 ---
 
 # Our Role
 
-- **Ensure it's Good Code.**
+<div class="grid grid-cols-[minmax(0,1fr)_minmax(14rem,0.8fr)] items-center gap-8">
+
+<div>
+
+- **Build good interfaces.**
+  - What should callers need to know?
+  - Where are the boundaries? Where are they leaking?
+- **Use AI to explore and build.**
+  - Ask for ideas and explanations.
+  - Delegate implementation inside the structure.
+- **Own what ships.**
   - "It passes tests" is not the same as "we can maintain it."
-  - PR reviews exist because code still needs ownership.
-- **Choose the boundaries.**
-  - What should the next layer have to know?
-  - What should this layer remember for them?
-- **Live with the consequences.**
-  - AI will generate 8-argument functions, leaky abstractions, workarounds.
-  - That AI session won't be debugging this in three months. You will.
+  - The next layer will build on this one.
+
+</div>
+
+<div class="flex items-center justify-center">
+
+<img
+  src="/images/blocks-no-text.webp"
+  alt="Stack of unlabeled building blocks"
+  class="max-h-[280px] rounded bg-white"
+/>
+
+</div>
+
+</div>
 
 <!--
 - Answer to opening question
-- Not: inspect every generated character
-- Value: ownership
-- Decide what matters
-- Decide where boundaries belong
-- Decide what each layer exposes / hides
-- Decide what future readers/operators know locally
+- Not: type every character
+- Not: inspect every generated character forever
+- Engineer role: build good interfaces and own what ships
+- AI role: explore boundary options, find leaks, fill in implementation
+- Good boundaries become foundations
+- Weak boundaries become debt
+- The next layer builds on this one
 -->
 
 ---
