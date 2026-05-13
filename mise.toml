@@ -21,6 +21,11 @@ description = "Build the deck to a static SPA in dist/"
 depends = ["install"]
 run = "slidev build"
 
+[tasks.build-pages]
+description = "Build the deck for GitHub Pages"
+depends = ["install"]
+run = "slidev build --base /ai-code-slides/ --without-notes"
+
 [tasks.export]
 description = "Export the deck to PDF. May require installing Playwright."
 depends = ["install"]
