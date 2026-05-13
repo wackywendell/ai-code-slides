@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "slidev --open",
     "build": "slidev build",
+    "build:pages": "slidev build --base /ai-code-slides/ --without-notes",
     "export": "slidev export"
   },
   "dependencies": {

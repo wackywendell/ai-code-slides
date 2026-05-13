@@ -35,11 +35,35 @@ Other useful URLs while the dev server is running:
 ## Export
 
 ```sh
-mise run export    # → slides-export.pdf
-mise run build     # → dist/ (static SPA)
+mise run export      # → slides-export.pdf
+mise run build       # → dist/ (static SPA)
+mise run build-pages # → dist/ for GitHub Pages
 ```
 
 For PPTX, run `slidev export --format pptx` directly.
+
+## Publish
+
+The interactive deck is published through GitHub Pages from
+[`.github/workflows/pages.yml`](.github/workflows/pages.yml). Pull requests build
+the deck as CI. Pushes to `main` and manual dispatches build the deck with the
+repository base path, upload `dist/` as a Pages artifact, and deploy it to the
+`github-pages` environment.
+
+Before the first deployment, set the repository's GitHub Pages source to
+**GitHub Actions** under `Settings` -> `Pages` -> `Build and deployment`.
+
+The published deck URL is:
+
+<https://wackywendell.github.io/ai-code-slides/>
+
+For stable presentation snapshots, create a GitHub Release and attach exported
+files such as:
+
+```sh
+mise run export
+slidev export --format pptx
+```
 
 ## Layout
 
